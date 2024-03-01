@@ -26,7 +26,7 @@ A preliminary nmap scan reveals a few services.
 ### Port 21 / ProFTPD 1.3.5 
 [CVE-2015-3306](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3306): The mod_copy module in ProFTPD 1.3.5 allows remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.
 
-Follow the steps from the Rapid7 website: https:// www.rapid7.com/db/modules/exploit/unix/ftp/proftpd_modcopy_exec/
+https:// www.rapid7.com/db/modules/exploit/unix/ftp/proftpd_modcopy_exec/
 
 ```shell
 [msf](Jobs:0 Agents:0) >> use exploit/unix/ftp/proftpd_modcopy_exec

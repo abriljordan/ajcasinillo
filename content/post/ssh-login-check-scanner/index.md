@@ -9,6 +9,7 @@ tags:
     - SSH
 categories:
     - Metasploitable3 Linux Edition
+    - Parrot OS
 ---
 
 

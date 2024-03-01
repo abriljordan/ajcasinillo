@@ -5,9 +5,9 @@ date: 2024-02-15 00:00:00+0000
 image: 2.jpg
 categories:
     - Metasploitable3 Linux Edition
+    - Parrot OS
 tags:
     - metasploit
-    - parrotOS
 weight: 1   
 ---
 

@@ -8,6 +8,7 @@ tags:
     - nmap
 categories:
     - Metasploitable3 Linux Edition
+    - Parrot OS
 ---
 
 The Metasploitable virtual machine is a server that has been intentionally designed to be vulnerable. The version 3 of the VM is available in both Ubuntu and Windows OS.

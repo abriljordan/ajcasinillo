@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "https://ajcas-blog.github.io"
+baseurl = "https://abriljordan.github.io/ajcas-blog/"
 languageCode = "en-us"
 paginate = 5
 title = "Hugo Theme Stack Starter"

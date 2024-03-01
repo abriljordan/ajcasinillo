@@ -1,10 +1,10 @@
 ---
-title: Payroll App - Metasploitable3
+title: SQL Injection on Payroll Web Application
 date: 2024-02-18
-description: Sample article showcasing basic Markdown syntax and formatting for HTML elements.
+description: SQL Injection on Payroll Web Applicatio
 tags: 
     - metasploitable3
-    - metasploit
+    - SQL Injection
 categories:
     - Metasploitable3 Linux Edition
 ---

@@ -185,4 +185,60 @@ Table: users
 [*] ending @ 12:53:37 /2024-03-03/
 
 ```
+Connect using SSH. Select a username and password from the lists above.
+```shell
 
+┌─[parrot@parrot]─[~]
+└──╼ $ssh leia_organa@10.0.3.6
+The authenticity of host '10.0.3.6 (10.0.3.6)' can't be established.
+ED25519 key fingerprint is SHA256:Rpy8shmBT8uIqZeMsZCG6N5gHXDNSWQ0tEgSgF7t/SM.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: [hashed name]
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.0.3.6' (ED25519) to the list of known hosts.
+leia_organa@10.0.3.6's password: 
+Welcome to Ubuntu 14.04.6 LTS (GNU/Linux 3.13.0-170-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+New release '16.04.7 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+leia_organa@metasploitable3-ub1404:~$ uname -a
+Linux metasploitable3-ub1404 3.13.0-170-generic #220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+leia_organa@metasploitable3-ub1404:~$ sudo -s
+[sudo] password for leia_organa: 
+root@metasploitable3-ub1404:~# 
+```
+
+Add new user
+```shell
+root@metasploitable3-ub1404:~# adduser abril
+Adding user `abril' ...
+Adding new group `abril' (1000) ...
+Adding new user `abril' (1000) with group `abril' ...
+Creating home directory `/home/abril' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+Changing the user information for abril
+Enter the new value, or press ENTER for the default
+	Full Name []: abril jordan casinillo
+	Room Number []: 47
+	Work Phone []: 123456789
+	Home Phone []: 123456789
+	Other []: 14344
+Is the information correct? [Y/n] Y
+root@metasploitable3-ub1404:~# su - abril
+abril@metasploitable3-ub1404:~$ 
+
+```

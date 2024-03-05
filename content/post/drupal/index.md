@@ -2,7 +2,6 @@
 title: Drupal HTTP Parameter Key/Value SQL Injection
 description: Drupal HTTP Parameter Key/Value SQL Injection
 date: 2024-02-15 00:00:00+0000
-image: 2.jpg
 categories:
     - Metasploitable3 Linux Edition
     - Parrot OS

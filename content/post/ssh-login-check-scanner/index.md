@@ -2,7 +2,6 @@
 title: Port 22 / SSH Login Check Scanner
 description: Port 22 / SSH Login Check Scanner
 date: 2024-02-18 00:00:00+0000
-image: cover.jpg
 tags: 
     - metasploitable3
     - metasploit

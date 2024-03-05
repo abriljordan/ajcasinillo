@@ -3,7 +3,6 @@ title: Data Analytics Project
 description: Google Data Analytics Project
 slug: google-data-analytics
 date: 2023-08-15 00:00:00+0000
-image: cover.jpg
 categories:
     - Data Analytics
 tags:

@@ -16,7 +16,9 @@ After performing SQL Injection using SQLmap, use the credentials that has been r
 ```php
 $conn = new mysqli('127.0.0.1', 'root', 'sploitme', 'payroll');
 ```
+Username: root
 
+Password: sploitme
 
 
  ```shell

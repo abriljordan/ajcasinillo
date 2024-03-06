@@ -11,15 +11,7 @@ categories:
     - Parrot OS
 ---
 
-
-The Metasploitable virtual machine is a server that has been intentionally designed to be vulnerable. The version 3 of the VM is available in both Ubuntu and Windows OS.
-
-The Metasploitable version 3 is available on Github, https://github.com/rapid7/metasploitable3.
-This blog post will focus on the Linux version of Metasploitable 3.
-
-Port 22 / SSH Login Check Scanner
-
-Description
+# Port 22 / SSH Login Check Scanner
 
 "This module will test ssh logins on a range of machines and report successful logins. If you have loaded a database plugin and connected to a database this module will record successful logins and hosts so you can track your access."
 

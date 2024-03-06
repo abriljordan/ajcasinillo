@@ -10,11 +10,7 @@ tags:
 weight: 1   
 ---
 
-The Metasploitable virtual machine is a server that has been intentionally designed to be vulnerable. The version 3 of the VM is available in both Ubuntu and Windows OS.
-
-The Metasploitable version 3 is available on Github, https://github.com/rapid7/metasploitable3. This blog post will focus on the Linux version of Metasploitable 3.
-
-Description
+# Drupal HTTP Parameter Key/Value SQL Injection
 
 "This module exploits the Drupal HTTP Parameter Key/Value SQL Injection (aka Drupageddon) in order to achieve a remote shell on the vulnerable instance. This module was tested against Drupal 7.0 and 7.31 (was fixed in 7.32). Two methods are available to trigger the PHP payload on the target: - set TARGET 0: Form-cache PHP injection method (default). This uses the SQLi to upload a malicious form to Drupal's cache, then trigger the cache entry to execute the payload using a POP chain. - set TARGET 1: User-post injection method. This creates a new Drupal user, adds it to the administrators group, enable Drupal's PHP module, grant the administrators the right to bundle PHP code in their post, create a new post containing the payload and preview it to trigger the payload execution."
 

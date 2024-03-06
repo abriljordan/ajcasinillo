@@ -11,7 +11,7 @@ categories:
     - Parrot OS
 ---
 
-SQL Injection on Payroll Web Application
+# SQL Injection on Payroll Web Application using SQLmap
 
 ```shell
 
@@ -185,7 +185,7 @@ Table: users
 [*] ending @ 12:53:37 /2024-03-03/
 
 ```
-Connect using SSH. Select a username and password from the lists above.
+# Connect using SSH. Select a username and password from the lists above.
 ```shell
 
 ┌─[parrot@parrot]─[~]
@@ -219,7 +219,7 @@ leia_organa@metasploitable3-ub1404:~$ sudo -s
 root@metasploitable3-ub1404:~# 
 ```
 
-Add new user
+# Add new user
 ```shell
 root@metasploitable3-ub1404:~# adduser abril
 Adding user `abril' ...

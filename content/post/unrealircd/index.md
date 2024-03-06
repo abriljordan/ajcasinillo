@@ -11,15 +11,7 @@ categories:
     - Parrot OS
 ---
 
-The Metasploitable virtual machine is a server that has been intentionally designed to be vulnerable. The version 3 of the VM is available in both Ubuntu and Windows OS.
-
-The Metasploitable version 3 is available on Github, https://github.com/rapid7/metasploitable3.
-This blog post will focus on the Linux version of Metasploitable 3.
-
-
-UnrealIRCD 3.2.8.1 Backdoor Command Execution
-
-Description
+# UnrealIRCD 3.2.8.1 Backdoor Command Execution
 
 "This module exploits a malicious backdoor that was added to the Unreal IRCD 3.2.8.1 download archive. This backdoor was present in the Unreal3.2.8.1.tar.gz archive between November 2009 and June 12th 2010."
 

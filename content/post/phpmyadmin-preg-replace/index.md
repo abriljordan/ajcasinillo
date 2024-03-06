@@ -9,7 +9,7 @@ categories:
     - Parrot OS
 ---
 
- phpMyAdmin Authenticated Remote Code Execution via preg_replace()
+# phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 
 Perform SQL Injection, login into the Metasploitable3 via SSH using the stolen credentials. Navigate to the var/www/html directory to locate the Apache web server documents. 
 

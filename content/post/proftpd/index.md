@@ -1,7 +1,7 @@
 ---
 title: Port 21 / ProFTPD 1.3.5
 date: 2024-02-18
-description: Sample article showcasing basic Markdown syntax and formatting for HTML elements.
+description: Port 21 / ProFTPD 1.3.5
 tags: 
     - metasploitable3
     - metasploit
@@ -11,19 +11,8 @@ categories:
     - Parrot OS
 ---
 
-The Metasploitable virtual machine is a server that has been intentionally designed to be vulnerable. The version 3 of the VM is available in both Ubuntu and Windows OS.
 
-The Metasploitable version 3 is available on Github, https://github.com/rapid7/metasploitable3.
-This blog post will focus on the Linux version of Metasploitable 3.
-
-
-##  Nmap scan
-A preliminary nmap scan reveals a few services.
-![Nmap Scan](./nmap-scan.png)
-
-## Exploitation using Metasploit
-
-### Port 21 / ProFTPD 1.3.5 
+# Port 21 / ProFTPD 1.3.5 
 [CVE-2015-3306](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3306): The mod_copy module in ProFTPD 1.3.5 allows remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.
 
 https:// www.rapid7.com/db/modules/exploit/unix/ftp/proftpd_modcopy_exec/

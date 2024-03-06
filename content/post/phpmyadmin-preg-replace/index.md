@@ -11,7 +11,7 @@ categories:
 
  phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 
-After performing SQL Injection, and after adding a root user credentials - login into the Metasploitable3 via SSH. Navigate to the var/www/html directory to locate the Apache web server documents. 
+After performing SQL Injection, login into the Metasploitable3 via SSH using the stolen credentials. Navigate to the var/www/html directory to locate the Apache web server documents. 
 
 ```shell
 ┌─[parrot@parrot]─[~]

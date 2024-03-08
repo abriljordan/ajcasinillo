@@ -13,6 +13,8 @@ categories:
 
 # SQL Injection on Payroll Web Application using SQLmap
 
+An open-source program called SQLmap is used in penetration tests to find and take advantage of injection vulnerabilities. Because SQLmap automates the process of identifying and taking advantage of SQL injection, it is especially helpful in saving time.
+
 ```shell
 
 ┌─[parrot@parrot]─[~]

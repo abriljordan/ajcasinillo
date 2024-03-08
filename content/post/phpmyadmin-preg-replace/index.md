@@ -1,6 +1,6 @@
 ---
 title: phpMyAdmin Authenticated Remote Code Execution via preg_replace() 
-date: 2024-02-18
+date: 2023-12-18
 description:  phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 tags: 
     - Metasploitable3 Linux Edition

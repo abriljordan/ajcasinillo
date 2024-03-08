@@ -1,6 +1,6 @@
 ---
 title: UnrealIRCD 3.2.8.1 Backdoor Command Execution
-date: 2024-02-18
+date: 2023-07-18
 description: Metasploitable3 (Ubuntu) - UnrealIRCD 3.2.8.1 Backdoor Command Execution
 tags: 
     - Metasploitable3 Linux Edition

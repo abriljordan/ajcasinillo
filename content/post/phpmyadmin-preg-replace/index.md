@@ -3,10 +3,10 @@ title: phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 date: 2024-02-18
 description:  phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 tags: 
-    - metasploitable3
-categories:
     - Metasploitable3 Linux Edition
+categories:
     - Parrot OS
+    - Metasploitable3 Linux Edition
 ---
 
 # phpMyAdmin Authenticated Remote Code Execution via preg_replace()

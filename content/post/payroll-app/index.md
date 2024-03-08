@@ -3,7 +3,7 @@ title: SQL Injection on Payroll Web Application
 date: 2024-02-18
 description: SQL Injection on Payroll Web Application
 tags: 
-    - metasploitable3
+    - Metasploitable3 Linux Edition
     - SQL Injection
     - sqlmap
 categories:

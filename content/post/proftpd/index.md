@@ -3,12 +3,12 @@ title: Port 21 / ProFTPD 1.3.5
 date: 2024-02-18
 description: Port 21 / ProFTPD 1.3.5
 tags: 
-    - metasploitable3
+    - Metasploitable3 Linux Edition
     - metasploit
     - nmap
 categories:
-    - Metasploitable3 Linux Edition
     - Parrot OS
+    - Metasploitable3 Linux Edition
 ---
 
 

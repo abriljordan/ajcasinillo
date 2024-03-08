@@ -3,7 +3,7 @@ title: UnrealIRCD 3.2.8.1 Backdoor Command Execution
 date: 2024-02-18
 description: Metasploitable3 (Ubuntu) - UnrealIRCD 3.2.8.1 Backdoor Command Execution
 tags: 
-    - metasploitable3
+    - Metasploitable3 Linux Edition
     - metasploit
     - nmap
 categories:

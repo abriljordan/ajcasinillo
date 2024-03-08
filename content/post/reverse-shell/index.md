@@ -3,7 +3,7 @@ title: Reverse shell - msfvenom
 date: 2024-02-18
 description: Metasploitable3 (Ubuntu) - Reverse shell - msfvenom
 tags: 
-    - metasploitable3
+    - Metasploitable3 Linux Edition
     - metasploit
     - msfvenom
     - reverse shell

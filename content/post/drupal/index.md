@@ -7,6 +7,7 @@ categories:
     - Parrot OS
 tags:
     - metasploit
+    - Metasploitable3 Linux Edition
 weight: 1   
 ---
 

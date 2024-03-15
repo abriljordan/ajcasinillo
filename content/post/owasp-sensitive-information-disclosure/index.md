@@ -11,7 +11,10 @@ toc: false
 
 What is sensitive information disclosure vulnerability? When a website inadvertently provides users with sensitive information, this is known as sensitive information disclosure.
 
-### HTML/Javascript comments
+
+We'll be demonstrating a hardcoded credentials vulnerability utilizing the Client-side Comments page. 
+
+### First, open the Client-side Comments page by navigating to the following location in the menu: HTML/Javascript comments
 
 ![](1.png)
 

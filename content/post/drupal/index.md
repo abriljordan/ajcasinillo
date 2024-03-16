@@ -11,11 +11,11 @@ tags:
 weight: 1   
 ---
 
-# Drupal HTTP Parameter Key/Value SQL Injection
+Drupal HTTP Parameter Key/Value SQL Injection
 
 "This module exploits the Drupal HTTP Parameter Key/Value SQL Injection (aka Drupageddon) in order to achieve a remote shell on the vulnerable instance. This module was tested against Drupal 7.0 and 7.31 (was fixed in 7.32). Two methods are available to trigger the PHP payload on the target: - set TARGET 0: Form-cache PHP injection method (default). This uses the SQLi to upload a malicious form to Drupal's cache, then trigger the cache entry to execute the payload using a POP chain. - set TARGET 1: User-post injection method. This creates a new Drupal user, adds it to the administrators group, enable Drupal's PHP module, grant the administrators the right to bundle PHP code in their post, create a new post containing the payload and preview it to trigger the payload execution."
 
-https://www.rapid7.com/db/modules/exploit/multi/http/drupal_drupageddon/
+<https://www.rapid7.com/db/modules/exploit/multi/http/drupal_drupageddon/>
 
 ```shell
 [msf](Jobs:0 Agents:0) >> use exploit/multi/http/drupal_drupageddon

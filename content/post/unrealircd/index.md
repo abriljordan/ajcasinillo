@@ -11,11 +11,11 @@ categories:
     - Parrot OS
 ---
 
-# UnrealIRCD 3.2.8.1 Backdoor Command Execution
+UnrealIRCD 3.2.8.1 Backdoor Command Execution
 
 "This module exploits a malicious backdoor that was added to the Unreal IRCD 3.2.8.1 download archive. This backdoor was present in the Unreal3.2.8.1.tar.gz archive between November 2009 and June 12th 2010."
 
-https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor/
+<https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor/>
 
 ```shell
 [msf](Jobs:0 Agents:0) >> use exploit/unix/irc/unreal_ircd_3281_backdoor

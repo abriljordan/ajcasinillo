@@ -9,9 +9,9 @@ categories:
     - Metasploitable3 Linux Edition
 ---
 
-# phpMyAdmin Authenticated Remote Code Execution via preg_replace()
+phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 
-Perform SQL Injection, login into the Metasploitable3 via SSH using the stolen credentials. Navigate to the var/www/html directory to locate the Apache web server documents. 
+Perform SQL Injection, login into the Metasploitable3 via SSH using the stolen credentials. Navigate to the var/www/html directory to locate the Apache web server documents.
 
 ```shell
 ┌─[parrot@parrot]─[~]
@@ -42,10 +42,10 @@ Open the payroll_app.php and explore the file to retrieve login credentials.
 ```php
 $conn = new mysqli('127.0.0.1', 'root', 'sploitme', 'payroll');
 ```
+
 Username: root
 
 Password: sploitme
-
 
  ```shell
  [msf](Jobs:0 Agents:0) >> search phpMyAdmin Authenticated Remote Code Execution

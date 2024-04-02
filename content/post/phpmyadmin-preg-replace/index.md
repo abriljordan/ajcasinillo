@@ -7,7 +7,14 @@ tags:
 categories:
     - Parrot OS
     - Metasploitable3 Linux Edition
+toc: false
 ---
+
+## Target: Metasploitable 3 Linux
+
+## Tool: Metasploit
+
+## Vulnerability: phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 
 phpMyAdmin Authenticated Remote Code Execution via preg_replace()
 

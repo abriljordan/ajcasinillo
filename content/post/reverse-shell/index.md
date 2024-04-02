@@ -10,7 +10,14 @@ tags:
 categories:
     - Metasploitable3 Linux Edition
     - Parrot OS
+toc: false
 ---
+
+## Target: Metasploitable 3 Linux
+
+## Tool: Metasploit
+
+## Vulnerability: Reverse shell
 
 Reverse shell
 

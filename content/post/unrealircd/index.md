@@ -9,7 +9,14 @@ tags:
 categories:
     - Metasploitable3 Linux Edition
     - Parrot OS
+toc: false
 ---
+
+## Target: Metasploitable 3 Linux
+
+## Tool: Metasploit
+
+## Vulnerability: UnrealIRCD 3.2.8.1 Backdoor Command Execution
 
 UnrealIRCD 3.2.8.1 Backdoor Command Execution
 

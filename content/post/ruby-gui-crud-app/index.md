@@ -28,7 +28,7 @@ Installation
 ```
 ## Ruby GUI CRUD App using gtk3
 
-![Ruby GUI CRUD App using gtk3](ruby-gui.png "Ruby GUI CRUD App using gtk3")
+![Ruby GUI CRUD App using gtk3](ruby-gui-search.png "Ruby GUI CRUD App using gtk3")
 
 ###  Install the necessary gems:
     gtk3: For building the GUI.
@@ -69,13 +69,19 @@ class CrudApp
   end
 
   def create_window
-    @window = Gtk::Window.new("Ruby SQLite CRUD App")
-    @window.set_size_request(400, 300)
+    @window = Gtk::Window.new("Ruby SQLite CRUD App with Search")
+    @window.set_size_request(400, 400)
     @window.signal_connect("destroy") { Gtk.main_quit }
 
     # Create a vertical box layout
     vbox = Gtk::Box.new(:vertical, 10)
     vbox.margin = 20
+
+    # Entry field for search
+    @search_entry = Gtk::Entry.new
+    @search_entry.placeholder_text = "Search users by name or email"
+    @search_entry.signal_connect("changed") { search_users }  # Trigger search on input change
+    vbox.pack_start(@search_entry, expand: false, fill: true, padding: 5)
 
     # Entry fields for name and email
     @name_entry = Gtk::Entry.new
@@ -130,50 +136,65 @@ class CrudApp
     clear_entries
   end
 
+  def update_user
+    selected_row = @listbox.selected_row
+    return unless selected_row
+
+    user_id = selected_row.instance_variable_get(:@user_id)
+    name = @name_entry.text
+    email = @email_entry.text
+
+    if name.empty? || email.empty?
+      show_message("Name and Email cannot be empty!")
+      return
+    end
+
+    @db.execute("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, user_id])
+    refresh_users_list
+    clear_entries
+  end
+
+  def delete_user
+    selected_row = @listbox.selected_row
+    return unless selected_row
+
+    user_id = selected_row.instance_variable_get(:@user_id)
+    @db.execute("DELETE FROM users WHERE id = ?", [user_id])
+    refresh_users_list
+    clear_entries
+  end
+
+  def search_users
+    search_query = @search_entry.text.downcase
+    return refresh_users_list if search_query.empty?  # Reset list if search is empty
+
+    @listbox.each { |child| @listbox.remove(child) }  # Clear current list
+
+    # Query the database for matching users based on search query (name or email)
+    @db.execute("SELECT * FROM users WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ?", ["%#{search_query}%", "%#{search_query}%"]) do |row|
+      list_row = Gtk::ListBoxRow.new
+      list_row.instance_variable_set(:@user_id, row[0])  # Save user id for update/delete actions
+      label = Gtk::Label.new("#{row[1]} - #{row[2]}")
+      list_row.add(label)
+      @listbox.add(list_row)
+    end
+
+    @listbox.show_all
+  end
+
   def refresh_users_list
-  @listbox.each { |child| @listbox.remove(child) }  # Clear current list
+    @listbox.each { |child| @listbox.remove(child) }  # Clear current list
 
-  @db.execute("SELECT * FROM users") do |row|
-    list_row = Gtk::ListBoxRow.new
-    list_row.instance_variable_set(:@user_id, row[0])  # Save user id for update/delete actions
-    label = Gtk::Label.new("#{row[1]} - #{row[2]}")
-    list_row.add(label)
-    @listbox.add(list_row)
+    @db.execute("SELECT * FROM users") do |row|
+      list_row = Gtk::ListBoxRow.new
+      list_row.instance_variable_set(:@user_id, row[0])  # Save user id for update/delete actions
+      label = Gtk::Label.new("#{row[1]} - #{row[2]}")
+      list_row.add(label)
+      @listbox.add(list_row)
+    end
+
+    @listbox.show_all
   end
-
-  @listbox.show_all
-end
-
-def update_user
-  selected_row = @listbox.selected_row
-  return unless selected_row
-
-  user_id = selected_row.instance_variable_get(:@user_id)
-  name = @name_entry.text
-  email = @email_entry.text
-
-  if name.empty? || email.empty?
-    show_message("Name and Email cannot be empty!")
-    return
-  end
-
-  @db.execute("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, user_id])
-  refresh_users_list
-  clear_entries
-end
-
-def delete_user
-  selected_row = @listbox.selected_row
-  return unless selected_row
-
-  user_id = selected_row.instance_variable_get(:@user_id)
-  @db.execute("DELETE FROM users WHERE id = ?", [user_id])
-  refresh_users_list
-  clear_entries
-end
-
-#  instance_variable_set(:@user_id, row[0]): This method attaches the user_id to each Gtk::ListBoxRow as an instance variable. The variable @user_id will hold the ID from the database.
-#  instance_variable_get(:@user_id): This method retrieves the stored user_id from the selected row when updating or deleting the user.
 
   def clear_entries
     @name_entry.text = ''

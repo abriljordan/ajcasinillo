@@ -109,9 +109,26 @@ class CrudApp
 
     vbox.pack_start(hbox, expand: false, fill: true, padding: 5)
 
+    # Create a grid to hold the column labels and user list
+    grid = Gtk::Grid.new
+    grid.row_spacing = 10
+    grid.column_spacing = 20
+
+    # Column labels
+    name_label = Gtk::Label.new("Name")
+    email_label = Gtk::Label.new("Email")
+    name_label.set_xalign(0)  # Align labels to the left
+    email_label.set_xalign(0)
+    
+    # Add column labels to the grid
+    grid.attach(name_label, 0, 0, 1, 1)
+    grid.attach(email_label, 1, 0, 1, 1)
+
     # Listbox for displaying users
     @listbox = Gtk::ListBox.new
-    vbox.pack_start(@listbox, expand: true, fill: true, padding: 5)
+    grid.attach(@listbox, 0, 1, 2, 1)  # Listbox spans across both columns
+
+    vbox.pack_start(grid, expand: true, fill: true, padding: 5)
 
     # Add the layout to the window
     @window.add(vbox)
@@ -174,8 +191,17 @@ class CrudApp
     @db.execute("SELECT * FROM users WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ?", ["%#{search_query}%", "%#{search_query}%"]) do |row|
       list_row = Gtk::ListBoxRow.new
       list_row.instance_variable_set(:@user_id, row[0])  # Save user id for update/delete actions
-      label = Gtk::Label.new("#{row[1]} - #{row[2]}")
-      list_row.add(label)
+      row_box = Gtk::Box.new(:horizontal, 20)
+      
+      name_label = Gtk::Label.new(row[1])
+      name_label.set_xalign(0)
+      email_label = Gtk::Label.new(row[2])
+      email_label.set_xalign(0)
+
+      row_box.pack_start(name_label, expand: true, fill: true, padding: 10)
+      row_box.pack_start(email_label, expand: true, fill: true, padding: 10)
+      
+      list_row.add(row_box)
       @listbox.add(list_row)
     end
 
@@ -188,8 +214,17 @@ class CrudApp
     @db.execute("SELECT * FROM users") do |row|
       list_row = Gtk::ListBoxRow.new
       list_row.instance_variable_set(:@user_id, row[0])  # Save user id for update/delete actions
-      label = Gtk::Label.new("#{row[1]} - #{row[2]}")
-      list_row.add(label)
+      row_box = Gtk::Box.new(:horizontal, 20)
+      
+      name_label = Gtk::Label.new(row[1])
+      name_label.set_xalign(0)
+      email_label = Gtk::Label.new(row[2])
+      email_label.set_xalign(0)
+
+      row_box.pack_start(name_label, expand: true, fill: true, padding: 10)
+      row_box.pack_start(email_label, expand: true, fill: true, padding: 10)
+
+      list_row.add(row_box)
       @listbox.add(list_row)
     end
 

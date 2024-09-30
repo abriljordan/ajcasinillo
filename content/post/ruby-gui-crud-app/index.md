@@ -1,6 +1,6 @@
 ---
 title: Ruby GUI CRUD App
-description: Ruby GUI CRUD App using gtk3
+description: This code was inspired by a generic Ruby/GTK and SQLite CRUD example.
 date: 2024-09-30 00:00:00+0000
 categories:
     - Ruby
@@ -13,7 +13,7 @@ weight: 1       # You can add weight to some posts to override the default sorti
 
 ## Ruby GTK (Ruby-GNOME2)
 
-Description: GTK is a powerful cross-platform toolkit for creating graphical user interfaces. Ruby-GNOME2 (now called gtk3 for Ruby) is the Ruby binding for the GTK library.
+GTK is a powerful cross-platform toolkit for creating graphical user interfaces. Ruby-GNOME2 (now called gtk3 for Ruby) is the Ruby binding for the GTK library.
 
 Features:
 

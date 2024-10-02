@@ -31,3 +31,10 @@ Several techniques are gaining prominence:
 * Supply chain attacks and phishing campaigns are expanding in scope, especially targeting companies’ cloud services and critical infrastructure ￼ ￼.
 
 These developments point to a more professionalized and automated cybercrime ecosystem, requiring stronger defenses such as multi-factor authentication, timely patching, and regular backups to mitigate risks.
+
+Source:
+
+https://www.bitdefender.com/blog/businessinsights/2024-cybersecurity-forecast-ransomwares-new-tactics-and-targets/
+
+
+https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2928709/cisa-fbi-nsa-and-international-partners-issue-advisory-on-ransomware-trends-fro/

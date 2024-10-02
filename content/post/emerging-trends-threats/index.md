@@ -14,13 +14,15 @@ weight: 1
 
 Several new trends and evolving techniques in cyber threats, particularly around ransomware, trojans, and hacking, are emerging in 2024:
 
-## Ransomware Sophistication: 
+## Ransomware Sophistication
+
 Attackers are shifting from full encryption to intermittent encryption, encrypting portions of files at a time to evade detection and speed up attacks. Ransomware groups are also using quantum-resilient encryption methods, making recovery more difficult. Moreover, data theft and exfiltration are becoming primary tactics, with attackers stealing sensitive data and threatening to publish it unless a ransom is paid. Groups like CL0P and BlackCat have embraced this approach, often targeting cloud infrastructure, industrial systems, and managed service providers.
 
-## Trojans and Virus Evolution: 
+## Trojans and Virus Evolution
+
 Cybercriminals are increasingly exploiting software vulnerabilities and stolen credentials, especially through phishing and brute-force attacks on Remote Desktop Protocols (RDP). Viruses are often delivered through trojans disguised as legitimate software or updates, which then facilitate deeper access into networks.
 
-## Hacking Techniques: 
+## Hacking Techniques
 
 Several techniques are gaining prominence:
 		

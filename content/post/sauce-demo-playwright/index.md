@@ -12,112 +12,190 @@ weight: 1
 ---
 
 
-Playwright test script for the Sauce Demo website (https://www.saucedemo.com/) that tests logging in, adding an item to the cart, and checking out.
+PUsing Playwright for automated testing is a powerful way to handle modern web applications. It provides better performance, multi-browser support, and rich APIs for handling complex scenarios. Below is an example of how to write detailed automation scripts with assertions, handle complex scenarios, and save logs for the Sauce Demo website.
 
-## Requirements:
-    You need to have Node.js and Playwright installed. 
-    If you haven’t installed Playwright, you can do so with the following command:
+Setting Up Playwright
+
+  1.  Install Playwright:
 ```bash
 npm init playwright@latest
 ```
 
-## Sample Playwright Test Script:
+2.  Set up a new project, install dependencies, and configure the necessary files.
+
+Test Scenario 1: Valid User Login and Product Purchase Flow
+
+This script will:
+
+  • Log in to the website using valid credentials.
+  • Add multiple products to the cart.
+  • Complete the purchase.
+  • Save logs of the script execution.
+
+Here’s the Playwright script with assertions and log saving functionality.
 
 ```js
 const { test, expect } = require('@playwright/test');
+const fs = require('fs');
 
-test.describe('Sauce Demo Test Suite', () => {
+// Test block
+test('Valid user login and product purchase', async ({ page }) => {
+  // Log file setup
+  const logFile = fs.createWriteStream('test_logs.txt', { flags: 'a' });
+  const log = (message) => {
+    console.log(message);
+    logFile.write(`${new Date().toISOString()} - ${message}\n`);
+  };
 
-  test.beforeEach(async ({ page }) => {
-    // Go to the Saucedemo website
+  try {
+    log('Starting test: Valid user login and product purchase');
+
+    // 1. Navigate to the Sauce Demo site
     await page.goto('https://www.saucedemo.com/');
-  });
+    log('Navigated to Sauce Demo site');
 
-  test('Login with standard user and verify inventory page', async ({ page }) => {
-    // Login credentials
-    const username = 'standard_user';
-    const password = 'secret_sauce';
-
-    // Fill in username and password
-    await page.fill('#user-name', username);
-    await page.fill('#password', password);
-
-    // Click on the login button
-    await page.click('#login-button');
-
-    // Verify we are on the inventory page
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
-    await expect(page.locator('.inventory_list')).toBeVisible();
-  });
-
-  test('Add an item to the cart and proceed to checkout', async ({ page }) => {
-    // Login
+    // 2. Login with valid credentials
     await page.fill('#user-name', 'standard_user');
     await page.fill('#password', 'secret_sauce');
     await page.click('#login-button');
+    log('Logged in with valid credentials');
 
-    // Verify we are on the inventory page
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+    // 3. Verify successful login by checking URL contains 'inventory'
+    await expect(page).toHaveURL(/.*inventory/);
+    log('Login successful: User on inventory page');
 
-    // Add the first item to the cart
-    await page.click('button[data-test="add-to-cart-sauce-labs-backpack"]');
+    // 4. Add multiple products to the cart
+    await page.click('#add-to-cart-sauce-labs-backpack');
+    await page.click('#add-to-cart-sauce-labs-bike-light');
+    log('Added two products to the cart');
 
-    // Verify the item is added by checking the cart count
-    const cartBadge = page.locator('.shopping_cart_badge');
-    await expect(cartBadge).toHaveText('1');
-
-    // Click on the cart icon to view the cart
+    // 5. Navigate to the cart page
     await page.click('.shopping_cart_link');
+    log('Navigated to the cart page');
 
-    // Verify we are on the cart page
-    await expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
-    await expect(page.locator('.cart_item')).toBeVisible();
+    // 6. Verify that two items are in the cart
+    const cartItems = await page.locator('.cart_item');
+    expect(await cartItems.count()).toBe(2);
+    log('Verified that there are two items in the cart');
 
-    // Proceed to checkout
-    await page.click('button[data-test="checkout"]');
-
-    // Verify we are on the checkout step one page
-    await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-one.html');
-
-    // Fill in checkout information
+    // 7. Proceed to checkout
+    await page.click('#checkout');
     await page.fill('#first-name', 'John');
     await page.fill('#last-name', 'Doe');
     await page.fill('#postal-code', '12345');
+    await page.click('#continue');
+    log('Entered checkout information and proceeded');
 
-    // Click continue
-    await page.click('button[data-test="continue"]');
-
-    // Verify we are on the checkout step two page
-    await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-two.html');
-
-    // Finish checkout
-    await page.click('button[data-test="finish"]');
-
-    // Verify we are on the confirmation page
-    await expect(page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');
+    // 8. Complete the purchase
+    await page.click('#finish');
     await expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER');
-  });
+    log('Purchase completed successfully');
 
+  } catch (error) {
+    log(`Error during test execution: ${error}`);
+    throw error;
+  } finally {
+    // Close log file
+    logFile.end();
+  }
 });
 ```
 
-## What does this test do?
 
-	1.	Login Test:
-	    •	Logs in using the standard user credentials.
-	    •	Verifies that the inventory page loads correctly.
-	2.	Add Item to Cart and Checkout:
-	    •	Adds the Sauce Labs Backpack to the cart.
-	    •	Verifies the item is added by checking the cart badge.
-	    •	Proceeds to checkout, fills in the necessary details, and finishes the checkout process.
-	    •	Verifies that the order confirmation page loads.
 
-## Running the Test
+Key Points
 
-	1.	Save this script in your tests folder (e.g., as saucedemo.test.js).
-	2.	Run the test using the following command:
-```bash
-npx playwright test
+  1.  Assertions:
+  • expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
+  • expect(cartItems.count()).toBe(2): Verifies that two items are in the cart.
+  • expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
+  2.  Logging:
+  • All the actions and test results are logged in the test_logs.txt file.
+  • The log function handles console logging and writes the messages to the log file.
+
+
+  Test Scenario 2: Invalid Login and Error Handling
+
+This script will test login failure using invalid credentials and verify that an appropriate error message is displayed.
+
+```js
+test('Invalid login shows error message', async ({ page }) => {
+  const logFile = fs.createWriteStream('test_logs.txt', { flags: 'a' });
+  const log = (message) => {
+    console.log(message);
+    logFile.write(`${new Date().toISOString()} - ${message}\n`);
+  };
+
+  try {
+    log('Starting test: Invalid login shows error message');
+
+    // 1. Navigate to the Sauce Demo site
+    await page.goto('https://www.saucedemo.com/');
+    log('Navigated to Sauce Demo site');
+
+    // 2. Attempt login with invalid credentials
+    await page.fill('#user-name', 'invalid_user');
+    await page.fill('#password', 'wrong_password');
+    await page.click('#login-button');
+    log('Attempted login with invalid credentials');
+
+    // 3. Verify error message appears
+    const errorMessage = await page.locator('[data-test="error"]');
+    await expect(errorMessage).toBeVisible();
+    await expect(errorMessage).toHaveText('Username and password do not match any user in this service');
+    log('Error message verified: Invalid credentials');
+
+  } catch (error) {
+    log(`Error during test execution: ${error}`);
+    throw error;
+  } finally {
+    logFile.end();
+  }
+});
 ```
 
-This script covers the core functionality of logging in, adding an item to the cart, and completing a purchase on the Sauce Demo website. You can expand the test suite to include more test cases as needed!
+Test Scenario 3: Sorting Products by Price (Low to High)
+
+This script tests that the product sorting feature works correctly.
+
+```js
+test('Sort products by price (low to high)', async ({ page }) => {
+  const logFile = fs.createWriteStream('test_logs.txt', { flags: 'a' });
+  const log = (message) => {
+    console.log(message);
+    logFile.write(`${new Date().toISOString()} - ${message}\n`);
+  };
+
+  try {
+    log('Starting test: Sort products by price (low to high)');
+
+    // 1. Navigate to the Sauce Demo site and log in
+    await page.goto('https://www.saucedemo.com/');
+    await page.fill('#user-name', 'standard_user');
+    await page.fill('#password', 'secret_sauce');
+    await page.click('#login-button');
+    log('Logged in with valid credentials');
+
+    // 2. Sort products by price (low to high)
+    await page.selectOption('.product_sort_container', 'lohi');
+    log('Sorted products by price (low to high)');
+
+    // 3. Verify sorting (check first and last product prices)
+    const prices = await page.$$eval('.inventory_item_price', elements => elements.map(el => parseFloat(el.textContent.replace('$', ''))));
+    log(`Prices fetched: ${prices}`);
+
+    expect(prices).toEqual(prices.slice().sort((a, b) => a - b));
+    log('Verified that products are sorted by price (low to high)');
+
+  } catch (error) {
+    log(`Error during test execution: ${error}`);
+    throw error;
+  } finally {
+    logFile.end();
+  }
+});
+```
+
+Conclusion
+
+By using Playwright with assertions and complex scenarios like sorting, adding/removing items, and handling failed logins, you can achieve thorough automation testing for the Sauce Demo website. The inclusion of detailed logging, error handling, and data-driven testing makes the scripts robust and suitable for use in Continuous Integration (CI) pipelines.

@@ -12,7 +12,7 @@ weight: 1
 ---
 
 
-PUsing Playwright for automated testing is a powerful way to handle modern web applications. It provides better performance, multi-browser support, and rich APIs for handling complex scenarios. Below is an example of how to write detailed automation scripts with assertions, handle complex scenarios, and save logs for the Sauce Demo website.
+Using Playwright for automated testing is a powerful way to handle modern web applications. It provides better performance, multi-browser support, and rich APIs for handling complex scenarios. Below is an example of how to write detailed automation scripts with assertions, handle complex scenarios, and save logs for the Sauce Demo website.
 
 Setting Up Playwright
 
@@ -105,13 +105,19 @@ test('Valid user login and product purchase', async ({ page }) => {
 
 Key Points
 
-  1.  Assertions:
-  • expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
-  • expect(cartItems.count()).toBe(2): Verifies that two items are in the cart.
-  • expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
-  2.  Logging:
-  • All the actions and test results are logged in the test_logs.txt file.
-  • The log function handles console logging and writes the messages to the log file.
+1.  Assertions:
+
+• expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
+  
+• expect(cartItems.count()).toBe(2): Verifies that two items are in the cart.
+  
+• expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
+  
+2.  Logging:
+  
+• All the actions and test results are logged in the test_logs.txt file.
+  
+• The log function handles console logging and writes the messages to the log file.
 
 
   Test Scenario 2: Invalid Login and Error Handling

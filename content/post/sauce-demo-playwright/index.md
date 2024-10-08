@@ -14,25 +14,29 @@ weight: 1
 
 Using Playwright for automated testing is a powerful way to handle modern web applications. It provides better performance, multi-browser support, and rich APIs for handling complex scenarios. Below is an example of how to write detailed automation scripts with assertions, handle complex scenarios, and save logs for the Sauce Demo website.
 
-Setting Up Playwright
+## Setting Up Playwright
 
-  1.  Install Playwright:
+1.  Install Playwright:
 ```bash
 npm init playwright@latest
 ```
 
 2.  Set up a new project, install dependencies, and configure the necessary files.
 
-Test Scenario 1: Valid User Login and Product Purchase Flow
+### Test Scenario 1: Valid User Login and Product Purchase Flow
 
 This script will:
 
   • Log in to the website using valid credentials.
+
   • Add multiple products to the cart.
+
   • Complete the purchase.
+
   • Save logs of the script execution.
 
-Here’s the Playwright script with assertions and log saving functionality.
+
+## Playwright script with assertions and log saving functionality.
 
 ```js
 const { test, expect } = require('@playwright/test');
@@ -101,11 +105,9 @@ test('Valid user login and product purchase', async ({ page }) => {
 });
 ```
 
-
-
 Key Points
 
-1.  Assertions:
+1. Assertions:
 
 • expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
   
@@ -113,14 +115,14 @@ Key Points
   
 • expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
   
-2.  Logging:
+2. Logging:
   
 • All the actions and test results are logged in the test_logs.txt file.
   
 • The log function handles console logging and writes the messages to the log file.
 
 
-  Test Scenario 2: Invalid Login and Error Handling
+### Test Scenario 2: Invalid Login and Error Handling
 
 This script will test login failure using invalid credentials and verify that an appropriate error message is displayed.
 
@@ -160,7 +162,7 @@ test('Invalid login shows error message', async ({ page }) => {
 });
 ```
 
-Test Scenario 3: Sorting Products by Price (Low to High)
+### Test Scenario 3: Sorting Products by Price (Low to High)
 
 This script tests that the product sorting feature works correctly.
 

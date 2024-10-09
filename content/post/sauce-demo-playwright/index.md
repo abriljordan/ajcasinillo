@@ -27,13 +27,13 @@ npm init playwright@latest
 
 This script will:
 
-  • Log in to the website using valid credentials.
+* Log in to the website using valid credentials.
 
-  • Add multiple products to the cart.
+* Add multiple products to the cart.
 
-  • Complete the purchase.
+* Complete the purchase.
 
-  • Save logs of the script execution.
+* Save logs of the script execution.
 
 
 ## Playwright script with assertions and log saving functionality.
@@ -109,17 +109,17 @@ Key Points
 
 1. Assertions:
 
-• expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
+* expect(page).toHaveURL(/.*inventory/): Verifies that the user is redirected to the inventory page.
   
-• expect(cartItems.count()).toBe(2): Verifies that two items are in the cart.
+* expect(cartItems.count()).toBe(2): Verifies that two items are in the cart.
   
-• expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
+* expect(page.locator('.complete-header')).toHaveText('THANK YOU FOR YOUR ORDER'): Verifies the order completion message.
   
 2. Logging:
   
-• All the actions and test results are logged in the test_logs.txt file.
+* All the actions and test results are logged in the test_logs.txt file.
   
-• The log function handles console logging and writes the messages to the log file.
+* The log function handles console logging and writes the messages to the log file.
 
 
 ### Test Scenario 2: Invalid Login and Error Handling

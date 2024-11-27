@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Test Plan on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/test-plan/</link><description>Recent content in Test Plan on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/test-plan/index.xml" rel="self" type="application/rss+xml"/><item><title>Sauce Demo Test Plan</title><link>https://abriljordan.github.io/ajcasinillo/p/sauce-demo-test-plan/</link><pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/sauce-demo-test-plan/</guid><description>&lt;h2 id="functionality-testing-of-the-sauce-demo-website">Functionality Testing of the Sauce Demo website
+&lt;/h2>&lt;p>To test the functionality of the Sauce Demo website (&lt;a class="link" href="https://www.saucedemo.com/%29" target="_blank" rel="noopener"
+>https://www.saucedemo.com/)&lt;/a>, you can break the process down into the following steps:&lt;/p>
+&lt;h3 id="identify-key-functional-areas-to-test">Identify Key Functional Areas to Test
+&lt;/h3>&lt;ul>
+&lt;li>Login Functionality: Test different user credentials (standard user, locked-out user, invalid users).&lt;/li>
+&lt;li>Product Page: Check if products are displayed, filtered, and sorted properly.&lt;/li>
+&lt;li>Shopping Cart: Verify adding/removing products from the cart and viewing the cart.&lt;/li>
+&lt;li>Checkout Process: Ensure that users can complete the checkout with valid/invalid data.&lt;/li>
+&lt;li>Navigation: Test if all links and buttons work correctly.&lt;/li>
+&lt;/ul>
+&lt;h2 id="manual-testing-steps">Manual Testing Steps
+&lt;/h2>&lt;p>A. Login Functionality&lt;/p>
+&lt;p>Test valid credentials:&lt;/p>
+&lt;ol>
+&lt;li>Open the Sauce Demo site.&lt;/li>
+&lt;li>Use standard_user as the username and secret_sauce as the password.&lt;/li>
+&lt;li>Verify that you are redirected to the products page after login.&lt;/li>
+&lt;/ol>
+&lt;p>Test invalid credentials:&lt;/p>
+&lt;ol>
+&lt;li>Enter incorrect username or password and click “Login.”&lt;/li>
+&lt;li>Verify that an error message appears: “Username and password do not match any user in this service.”&lt;/li>
+&lt;/ol>
+&lt;p>Test locked-out user login:&lt;/p>
+&lt;ol>
+&lt;li>Use locked_out_user as the username.&lt;/li>
+&lt;li>Verify that an error message “Sorry, this user has been locked out” appears.&lt;/li>
+&lt;/ol>
+&lt;p>B. Product Page&lt;/p>
+&lt;p>Test product display:&lt;/p>
+&lt;ol>
+&lt;li>After logging in, ensure that the product inventory page displays all available products.&lt;/li>
+&lt;li>Check if images, names, and prices are displayed for each product.&lt;/li>
+&lt;/ol>
+&lt;p>Test filtering and sorting:&lt;/p>
+&lt;ol>
+&lt;li>Use the sorting dropdown to sort products by price (low to high) or by name (A to Z).&lt;/li>
+&lt;li>Verify that products are correctly sorted.&lt;/li>
+&lt;/ol>
+&lt;p>C. Shopping Cart&lt;/p>
+&lt;p>Test adding products to the cart:&lt;/p>
+&lt;ol>
+&lt;li>On the product page, click “Add to Cart” for a few items.&lt;/li>
+&lt;li>Verify that the cart icon in the top-right corner updates the product count.&lt;/li>
+&lt;/ol>
+&lt;p>Test removing products from the cart:&lt;/p>
+&lt;ol>
+&lt;li>Open the cart by clicking the cart icon.&lt;/li>
+&lt;li>Remove one or more products and verify that the product count updates accordingly.&lt;/li>
+&lt;/ol>
+&lt;p>D. Checkout Process&lt;/p>
+&lt;p>Test valid checkout:&lt;/p>
+&lt;ol>
+&lt;li>Add products to the cart and click “Checkout.”&lt;/li>
+&lt;li>Enter valid information (first name, last name, postal code) and proceed.&lt;/li>
+&lt;li>Ensure the order is placed, and a confirmation message appears.&lt;/li>
+&lt;/ol>
+&lt;p>Test invalid checkout:&lt;/p>
+&lt;ol>
+&lt;li>Attempt to checkout with empty or invalid fields.&lt;/li>
+&lt;li>Verify that error messages appear when fields are invalid or missing.&lt;/li>
+&lt;/ol>
+&lt;p>E. Navigation&lt;/p>
+&lt;ul>
+&lt;li>Test the functionality of the navigation links and buttons (e.g., clicking the cart icon, going back to the products page, etc.).&lt;/li>
+&lt;/ul>
+&lt;h2 id="test-plan-for-sauce-demo-site">Test Plan for Sauce Demo Site
+&lt;/h2>&lt;h3 id="objective">Objective
+&lt;/h3>&lt;p>The objective of this test plan is to ensure that the basic functionalities of the Sauce Demo site work correctly, with a focus on the login, product browsing, shopping cart, and checkout features.&lt;/p>
+&lt;h3 id="scope">Scope
+&lt;/h3>&lt;p>In Scope:&lt;/p>
+&lt;ul>
+&lt;li>Functional testing for user login, adding products to the cart, checkout, and product browsing.&lt;/li>
+&lt;li>Out of Scope:&lt;/li>
+&lt;li>Performance testing, non-functional testing, and security testing.&lt;/li>
+&lt;/ul>
+&lt;h3 id="test-environment">Test Environment
+&lt;/h3>&lt;ul>
+&lt;li>Devices: MacBook Air (using macOS)&lt;/li>
+&lt;li>Browsers: Safari, Chrome, Firefox (based on what you can test)&lt;/li>
+&lt;li>Operating System: macOS&lt;/li>
+&lt;li>Dependencies: Sauce Demo website (&lt;a class="link" href="https://www.saucedemo.com/" target="_blank" rel="noopener"
+>https://www.saucedemo.com/&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;h3 id="testing-approach">Testing Approach
+&lt;/h3>&lt;ul>
+&lt;li>Manual Testing: Functional testing using different browsers on your MacBook.&lt;/li>
+&lt;li>Automation (Optional): You can create automation scripts using tools like Selenium WebDriver if required.&lt;/li>
+&lt;/ul>
+&lt;h3 id="features-to-be-tested">Features to be Tested
+&lt;/h3>&lt;ol>
+&lt;li>Login Page&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Valid Login&lt;/li>
+&lt;li>Invalid Login&lt;/li>
+&lt;li>Locked-out user scenario&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>Product Page&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>View products&lt;/li>
+&lt;li>Filter/sort products&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>Shopping Cart&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Add product(s) to cart&lt;/li>
+&lt;li>Remove product(s) from cart&lt;/li>
+&lt;li>View cart items&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>Checkout&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Checkout process&lt;/li>
+&lt;li>Enter valid/invalid details&lt;/li>
+&lt;li>Complete purchase&lt;/li>
+&lt;/ul>
+&lt;h2 id="test-cases-for-sauce-demo-site">Test Cases for Sauce Demo Site
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Case ID&lt;/th>
+&lt;th>Case Description&lt;/th>
+&lt;th>Steps&lt;/th>
+&lt;th>Expected Result&lt;/th>
+&lt;th>Status&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>TC_01&lt;/td>
+&lt;td>Verify valid user login&lt;/td>
+&lt;td>1. Navigate to &lt;a class="link" href="https://www.saucedemo.com/" target="_blank" rel="noopener"
+>https://www.saucedemo.com/&lt;/a> &lt;br> 2. Enter valid username and password &lt;br> 3. Click on &amp;ldquo;Login&amp;rdquo;&lt;/td>
+&lt;td>User is successfully logged in and redirected to the inventory page&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_02&lt;/td>
+&lt;td>Verify login with invalid creds&lt;/td>
+&lt;td>1. Enter invalid username and password &lt;br> 2. Click on &amp;ldquo;Login&amp;rdquo;&lt;/td>
+&lt;td>Error message is displayed, and the user remains on the login page&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_03&lt;/td>
+&lt;td>Verify locked-out user login&lt;/td>
+&lt;td>1. Enter username &amp;ldquo;locked_out_user&amp;rdquo; &lt;br> 2. Enter password &lt;br> 3. Click on &amp;ldquo;Login&amp;rdquo;&lt;/td>
+&lt;td>Error message &amp;ldquo;Sorry, this user has been locked out&amp;rdquo; is displayed&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_04&lt;/td>
+&lt;td>Verify product display&lt;/td>
+&lt;td>1. Navigate to the product page after login&lt;/td>
+&lt;td>All available products are displayed&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_05&lt;/td>
+&lt;td>Verify product filtering&lt;/td>
+&lt;td>1. Use the product filter/sorting dropdown &lt;br> 2. Sort by price or name&lt;/td>
+&lt;td>Products are correctly filtered based on the selection&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_06&lt;/td>
+&lt;td>Verify adding products to cart&lt;/td>
+&lt;td>1. From the product page, click &amp;ldquo;Add to Cart&amp;rdquo;&lt;/td>
+&lt;td>Product is added to the cart, and cart count increases&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_07&lt;/td>
+&lt;td>Verify removing products&lt;/td>
+&lt;td>1. Open the cart &lt;br> 2. Click &amp;ldquo;Remove&amp;rdquo;&lt;/td>
+&lt;td>Product is removed from the cart, and cart count decreases&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_08&lt;/td>
+&lt;td>Verify the checkout process&lt;/td>
+&lt;td>1. Add product(s) to the cart &lt;br> 2. Click &amp;ldquo;Checkout&amp;rdquo; &lt;br> 3. Enter valid details in the checkout form &lt;br> 4. Complete purchase&lt;/td>
+&lt;td>Purchase is successfully completed, and confirmation message is displayed&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TC_09&lt;/td>
+&lt;td>Verify checkout with invalid&lt;/td>
+&lt;td>1. Add product(s) to the cart &lt;br> 2. Click &amp;ldquo;Checkout&amp;rdquo; &lt;br> 3. Enter invalid/empty details in the form&lt;/td>
+&lt;td>Error message is displayed for invalid details&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>

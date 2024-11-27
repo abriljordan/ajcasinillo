@@ -54,9 +54,9 @@ Nmap done: 1 IP address (1 host up) scanned in 36.46 seconds
 
 ```
 
-### Metasploit results
+## Metasploit exploits
 
-#### vsftpd 2.3.4
+### vsftpd 2.3.4
 ```bash
 [msf](Jobs:0 Agents:0) >> search vsftpd 2.3.4
 
@@ -124,7 +124,7 @@ The output indicates that you have successfully exploited the vulnerability in t
         •  Timestamp: The session opened at 2024-11-27 05:32:49 +0000.
 
 
-#### unreal_ircd 3.2.8.1
+### unreal_ircd 3.2.8.1
 
 ```bash
 [msf](Jobs:0 Agents:0) >> search unreal_ircd
@@ -254,7 +254,7 @@ uname -a
 Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686 GNU/Linux
 ```
 
-#### Samba
+### Samba
 
 ```bash
 [msf](Jobs:0 Agents:0) >> search samba

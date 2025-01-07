@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gtk3 on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/gtk3/</link><description>Recent content in Gtk3 on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/gtk3/index.xml" rel="self" type="application/rss+xml"/><item><title>Ruby Port Scanner</title><link>https://abriljordan.github.io/ajcasinillo/p/ruby-port-scanner/</link><pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/ruby-port-scanner/</guid><description>&lt;p>A simple GUI-based port scanner using Ruby with GTK (GIMP Toolkit) and the gtk3 gem. Below is an example of how you can create a port scanner with a graphical interface in Ruby using GTK.&lt;/p>
+&lt;p>How It Works:&lt;/p>
+&lt;pre>&lt;code>1. GTK Widgets: The interface consists of an entry box for the host, start port, and end port, a button to start the scan, and a text view to display the scan results.
+2. Port Scanner Logic: The port scanner logic is the same as the console-based version. It attempts to connect to each port in the given range and outputs the result in the text view.
+3. Text View Output: The add_to_textview function appends each result to the text view as the ports are scanned.
+&lt;/code>&lt;/pre>
+&lt;h2 id="port-scanner-with-gtk-gui">Port Scanner with GTK GUI
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">require&lt;/span> &lt;span class="s1">&amp;#39;gtk3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">require&lt;/span> &lt;span class="s1">&amp;#39;socket&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">PortScanner&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">initialize&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Port Scanner&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_default_size&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">300&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_border_width&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:vertical&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@ip_entry&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@ip_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">placeholder_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Enter IP address&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@ip_entry&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@port_entry&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@port_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">placeholder_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Enter port range (e.g., 1-1000)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@port_entry&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scan_button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">label&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Scan&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scan_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span> &lt;span class="s2">&amp;#34;clicked&amp;#34;&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scan_ports&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scan_button&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@result_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">TextView&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@result_text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">editable&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kp">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scroll&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ScrolledWindow&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">scroll&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@result_text&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scroll&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vbox&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">scan_ports&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@ip_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">port_range&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@port_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;-&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="ss">:to_i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">start_port&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end_port&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">port_range&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">port_range&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@result_text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">buffer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Scanning...&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="no">Thread&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">open_ports&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="n">start_port&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="n">end_port&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">each&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">begin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">socket&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">TCPSocket&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ip&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">port&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">open_ports&lt;/span> &lt;span class="o">&amp;lt;&amp;lt;&lt;/span> &lt;span class="n">port&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">socket&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">rescue&lt;/span> &lt;span class="no">Errno&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ECONNREFUSED&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="no">Errno&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ETIMEDOUT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Port is closed or filtered&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">queue&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">open_ports&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@result_text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">buffer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="s2">&amp;#34;No open ports found.&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@result_text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">buffer&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="s2">&amp;#34;Open ports: &lt;/span>&lt;span class="si">#{&lt;/span>&lt;span class="n">open_ports&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;, &amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">show_all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">scanner&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">PortScanner&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">scanner&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Ruby GUI CRUD App</title><link>https://abriljordan.github.io/ajcasinillo/p/ruby-gui-crud-app/</link><pubDate>Mon, 30 Sep 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/ruby-gui-crud-app/</guid><description>&lt;h2 id="ruby-gtk-ruby-gnome2">Ruby GTK (Ruby-GNOME2)
+&lt;/h2>&lt;p>GTK is a powerful cross-platform toolkit for creating graphical user interfaces. Ruby-GNOME2 (now called gtk3 for Ruby) is the Ruby binding for the GTK library.&lt;/p>
+&lt;p>Features:&lt;/p>
+&lt;pre>&lt;code>* Extensive widget support.
+* Cross-platform (Linux, macOS, and Windows).
+* Well-documented and widely used.
+&lt;/code>&lt;/pre>
+&lt;p>Installation&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> gem install gtk3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="ruby-gui-crud-app-using-gtk3">Ruby GUI CRUD App using gtk3
+&lt;/h2>&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/ruby-gui-crud-app/ruby-gui-search.png"
+width="804"
+height="864"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/ruby-gui-crud-app/ruby-gui-search_hu10145671935407108172.png 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/ruby-gui-crud-app/ruby-gui-search_hu27055668206298591.png 1024w"
+loading="lazy"
+alt="Ruby GUI CRUD App using gtk3"
+class="gallery-image"
+data-flex-grow="93"
+data-flex-basis="223px"
+>&lt;/p>
+&lt;h3 id="install-the-necessary-gems">Install the necessary gems:
+&lt;/h3>&lt;pre>&lt;code>gtk3: For building the GUI.
+sqlite3: For managing the SQLite database.
+&lt;/code>&lt;/pre>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl"> gem install gtk3 sqlite3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="build-the-application">Build the Application
+&lt;/h3>&lt;p>Below is a simple Ruby script that demonstrates how to create a basic CRUD system for managing records (e.g., user information) with a GUI interface.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;span class="lnt">170
+&lt;/span>&lt;span class="lnt">171
+&lt;/span>&lt;span class="lnt">172
+&lt;/span>&lt;span class="lnt">173
+&lt;/span>&lt;span class="lnt">174
+&lt;/span>&lt;span class="lnt">175
+&lt;/span>&lt;span class="lnt">176
+&lt;/span>&lt;span class="lnt">177
+&lt;/span>&lt;span class="lnt">178
+&lt;/span>&lt;span class="lnt">179
+&lt;/span>&lt;span class="lnt">180
+&lt;/span>&lt;span class="lnt">181
+&lt;/span>&lt;span class="lnt">182
+&lt;/span>&lt;span class="lnt">183
+&lt;/span>&lt;span class="lnt">184
+&lt;/span>&lt;span class="lnt">185
+&lt;/span>&lt;span class="lnt">186
+&lt;/span>&lt;span class="lnt">187
+&lt;/span>&lt;span class="lnt">188
+&lt;/span>&lt;span class="lnt">189
+&lt;/span>&lt;span class="lnt">190
+&lt;/span>&lt;span class="lnt">191
+&lt;/span>&lt;span class="lnt">192
+&lt;/span>&lt;span class="lnt">193
+&lt;/span>&lt;span class="lnt">194
+&lt;/span>&lt;span class="lnt">195
+&lt;/span>&lt;span class="lnt">196
+&lt;/span>&lt;span class="lnt">197
+&lt;/span>&lt;span class="lnt">198
+&lt;/span>&lt;span class="lnt">199
+&lt;/span>&lt;span class="lnt">200
+&lt;/span>&lt;span class="lnt">201
+&lt;/span>&lt;span class="lnt">202
+&lt;/span>&lt;span class="lnt">203
+&lt;/span>&lt;span class="lnt">204
+&lt;/span>&lt;span class="lnt">205
+&lt;/span>&lt;span class="lnt">206
+&lt;/span>&lt;span class="lnt">207
+&lt;/span>&lt;span class="lnt">208
+&lt;/span>&lt;span class="lnt">209
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-ruby" data-lang="ruby">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">require&lt;/span> &lt;span class="s1">&amp;#39;gtk3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">require&lt;/span> &lt;span class="s1">&amp;#39;sqlite3&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Create or open an SQLite3 database&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">db&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">SQLite3&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Database&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span> &lt;span class="s2">&amp;#34;test.db&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Create a simple table if it doesn&amp;#39;t already exist&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span> &lt;span class="s">&amp;lt;&amp;lt;-SQL
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">&lt;/span> &lt;span class="no">CREATE&lt;/span> &lt;span class="no">TABLE&lt;/span> &lt;span class="no">IF&lt;/span> &lt;span class="no">NOT&lt;/span> &lt;span class="no">EXISTS&lt;/span> &lt;span class="n">users&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">id&lt;/span> &lt;span class="no">INTEGER&lt;/span> &lt;span class="no">PRIMARY&lt;/span> &lt;span class="no">KEY&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">name&lt;/span> &lt;span class="no">TEXT&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="no">TEXT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="no">SQL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># GTK Application&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">CrudApp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">initialize&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@builder&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Builder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">create_window&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">setup_signals&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">SQLite3&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Database&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span> &lt;span class="s2">&amp;#34;test.db&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">refresh_users_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">create_window&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Ruby SQLite CRUD App with Search&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_size_request&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">400&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">400&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;destroy&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">main_quit&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Create a vertical box layout&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:vertical&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">margin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Entry field for search&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@search_entry&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@search_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">placeholder_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Search users by name or email&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@search_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;changed&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">search_users&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c1"># Trigger search on input change&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@search_entry&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Entry fields for name and email&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@name_entry&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@name_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">placeholder_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Enter name&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@name_entry&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@email_entry&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@email_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">placeholder_text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Enter email&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@email_entry&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Buttons for CRUD operations&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hbox&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:horizontal&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">add_button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">label&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Add&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">add_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;clicked&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">add_user&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">add_button&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update_button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">label&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Update&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;clicked&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">update_user&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">update_button&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">delete_button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">label&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Delete&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">delete_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;clicked&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">delete_user&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delete_button&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">hbox&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Create a grid to hold the column labels and user list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">row_spacing&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">column_spacing&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Column labels&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Name&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Email&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># Align labels to the left&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Add column labels to the grid&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">attach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">attach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">email_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Listbox for displaying users&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ListBox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">grid&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">attach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vi">@listbox&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># Listbox spans across both columns&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">grid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Add the layout to the window&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vbox&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">show_all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">setup_signals&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@window&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">signal_connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;destroy&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">main_quit&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">add_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@name_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@email_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="nb">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="n">email&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">show_message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Name and Email cannot be empty!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;INSERT INTO users (name, email) VALUES (?, ?)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="nb">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">refresh_users_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">clear_entries&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">update_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">selected_row&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">selected_row&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">unless&lt;/span> &lt;span class="n">selected_row&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">selected_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">instance_variable_get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:@user_id&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@name_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@email_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="nb">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="n">email&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">show_message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Name and Email cannot be empty!&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;UPDATE users SET name = ?, email = ? WHERE id = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="nb">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">email&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">user_id&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">refresh_users_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">clear_entries&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">delete_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">selected_row&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">selected_row&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">unless&lt;/span> &lt;span class="n">selected_row&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">user_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">selected_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">instance_variable_get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:@user_id&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;DELETE FROM users WHERE id = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="n">user_id&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">refresh_users_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">clear_entries&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">search_users&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">search_query&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="vi">@search_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">downcase&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">refresh_users_list&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="n">search_query&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty?&lt;/span> &lt;span class="c1"># Reset list if search is empty&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">each&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="o">|&lt;/span> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">remove&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c1"># Clear current list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Query the database for matching users based on search query (name or email)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;SELECT * FROM users WHERE LOWER(name) LIKE ? OR LOWER(email) LIKE ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;%&lt;/span>&lt;span class="si">#{&lt;/span>&lt;span class="n">search_query&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">%&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;%&lt;/span>&lt;span class="si">#{&lt;/span>&lt;span class="n">search_query&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">%&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ListBoxRow&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">instance_variable_set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:@user_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># Save user id for update/delete actions&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:horizontal&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">email_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row_box&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">list_row&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">show_all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">refresh_users_list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">each&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="o">|&lt;/span> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">remove&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="c1"># Clear current list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@db&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;SELECT * FROM users&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="o">|&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">ListBoxRow&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">instance_variable_set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:@user_id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># Save user id for update/delete actions&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="ss">:horizontal&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">Label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">email_label&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">set_xalign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">row_box&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pack_start&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">email_label&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">expand&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">fill&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kp">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">list_row&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">row_box&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">list_row&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@listbox&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">show_all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">clear_entries&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@name_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="vi">@email_entry&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">show_message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dialog&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">Gtk&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="no">MessageDialog&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">parent&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="vi">@window&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">flags&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="ss">:destroy_with_parent&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">type&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="ss">:info&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">buttons_type&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="ss">:close&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">message&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dialog&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dialog&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">destroy&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">end&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Run the application&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="no">CrudApp&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="no">Gtk&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">main&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

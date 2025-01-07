@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Google Drive API on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/google-drive-api/</link><description>Recent content in Google Drive API on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 08 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/google-drive-api/index.xml" rel="self" type="application/rss+xml"/><item><title>Transfer Google Docs/Files Ownership</title><link>https://abriljordan.github.io/ajcasinillo/p/transfer-google-docs/files-ownership/</link><pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/transfer-google-docs/files-ownership/</guid><description>&lt;h2 id="tutorial-setting-up-google-oauth-20-and-using-the-oauth-playground-with-nodejs">Tutorial: Setting Up Google OAuth 2.0 and Using the OAuth Playground with Node.js
+&lt;/h2>&lt;p>This tutorial guides you through creating a Google Cloud project, setting up OAuth 2.0 credentials, and using the OAuth Playground to obtain a refresh token for Node.js integration.&lt;/p>
+&lt;h3 id="step-1-create-a-google-cloud-project">Step 1: Create a Google Cloud Project
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>Go to the Google Cloud Console.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click Select a Project &amp;gt; New Project.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Enter a Project Name and choose your Organization (if applicable).&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click Create and wait for the project to be created.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="step-2-set-up-oauth-20-credentials">Step 2: Set Up OAuth 2.0 Credentials
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>Navigate to the APIs &amp;amp; Services section on the left sidebar and select Credentials.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click Create Credentials &amp;gt; OAuth Client ID.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If prompted, configure the OAuth consent screen:&lt;/p>
+&lt;ul>
+&lt;li>Set the User Type to External.&lt;/li>
+&lt;li>Add a suitable App Name.&lt;/li>
+&lt;li>Set the Publishing Status to Testing.&lt;/li>
+&lt;li>Add Test Users by entering their email addresses.&lt;/li>
+&lt;li>Leave Scopes blank for now.&lt;/li>
+&lt;li>Save the configuration.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Return to Credentials and continue creating an OAuth client:&lt;/p>
+&lt;ul>
+&lt;li>Select Web Application as the application type.&lt;/li>
+&lt;li>Enter a suitable name.&lt;/li>
+&lt;li>In Authorized Redirect URIs, add:
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span class="line">&lt;span class="cl">https://developers.google.com/oauthplayground
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>Click Create.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Copy the Client ID and Client Secret from the generated credentials.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="step-3-authorize-apis-in-the-oauth-playground">Step 3: Authorize APIs in the OAuth Playground
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>Visit the OAuth Playground.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In the top-right corner, click the Settings icon.&lt;/p>
+&lt;ul>
+&lt;li>Provide the Client ID and Client Secret from the previous step.&lt;/li>
+&lt;li>Check the box for “Use your own OAuth credentials.”&lt;/li>
+&lt;li>Save the settings.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>On the left side, under Select &amp;amp; authorize APIs, expand the Google Drive API category.&lt;/p>
+&lt;ul>
+&lt;li>Select the scope &lt;code>https://www.googleapis.com/auth/drive&lt;/code>.&lt;/li>
+&lt;li>Click Authorize APIs.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Complete the authorization by signing in with a test user account you added earlier.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Click Exchange authorization code for tokens to generate an access token and refresh token.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Copy the Refresh Token displayed.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="tutorial-how-to-get-the-file-id-from-google-drive">Tutorial: How to Get the File ID from Google Drive
+&lt;/h2>&lt;p>The File ID is a unique identifier for each file stored in Google Drive. It is required when using Google Drive APIs to manage or manipulate files programmatically.&lt;/p>
+&lt;p>Using the Google Drive Web Interface&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Open Google Drive
+Visit Google Drive and log in with your Google account.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Locate Your File
+Navigate to the file for which you want to retrieve the File ID.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Right-Click and Select “Get Link”&lt;/p>
+&lt;ul>
+&lt;li>Right-click on the file and choose “Get Link”.&lt;/li>
+&lt;li>Ensure the link-sharing settings are configured appropriately (e.g., anyone with the link can view).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Copy the File ID&lt;/p>
+&lt;ul>
+&lt;li>The shared link will look something like this:
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">https://drive.google.com/file/d/FILE_ID/view?usp&lt;span class="o">=&lt;/span>sharing
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>The portion between /d/ and /view is the File ID.
+For example, if the link is:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">https://drive.google.com/file/d/1MMPSPbuXezEOucdYvbgIsZtiYcdYa7qT4eBdv_gWm3M/view?usp&lt;span class="o">=&lt;/span>sharing
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The File ID is:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">1MMPSPbuXezEOucdYvbgIsZtiYcdYa7qT4eBdv_gWm3M
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="tutorial-use-nodejs-in-transferring-ownership">Tutorial: Use Node.js in transferring ownership
+&lt;/h2>&lt;h4 id="install-dependencies">Install Dependencies
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">npm init -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install googleapis
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="nodejs-code-example">Node.js Code Example
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">google&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;googleapis&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// OAuth2 Client Setup
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">CLIENT_ID&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;your-client-id&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">CLIENT_SECRET&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;your-client-secret&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">REDIRECT_URI&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;https://developers.google.com/oauthplayground&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">REFRESH_TOKEN&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;your-refresh-token&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// File and Owner Details
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">FILE_ID&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;your-file-id&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// Replace with your file ID
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">NEW_OWNER_EMAIL&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;new-owner-email@example.com&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// Replace with the new owner&amp;#39;s email
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">oauth2Client&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">google&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">auth&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">OAuth2&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">CLIENT_ID&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">CLIENT_SECRET&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">REDIRECT_URI&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Set credentials with the refresh token
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">oauth2Client&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setCredentials&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">refresh_token&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">REFRESH_TOKEN&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Google Drive API client setup
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">drive&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">google&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">drive&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">version&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;v3&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">auth&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">oauth2Client&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Function to transfer ownership
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="nx">transferOwnership&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">fileId&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">newOwnerEmail&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Step 1: Check the current permissions of the file
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">res1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="nx">drive&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">permissions&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">list&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">fileId&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">supportsAllDrives&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pageSize&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">fields&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;*&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Find if the new owner is already in the permissions list
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">permissionId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">permission&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">res1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">permissions&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">find&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">({&lt;/span> &lt;span class="nx">emailAddress&lt;/span> &lt;span class="p">})&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="nx">emailAddress&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="nx">newOwnerEmail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// If no permission found, create new permission for writer role
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">permission&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">permissionId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">permission&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">data&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">id&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="nx">drive&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">permissions&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">create&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">fileId&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">fileId&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">sendNotificationEmail&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">supportsAllDrives&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">requestBody&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">role&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;writer&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">type&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">emailAddress&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">newOwnerEmail&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">permissionId&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Step 2: Update the permission to set the new owner as &amp;#34;pendingOwner&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">res2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="nx">drive&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">permissions&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">update&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">fileId&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">permissionId&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">supportsAllDrives&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">requestBody&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">role&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;writer&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pendingOwner&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Ownership transfer is pending:&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">res2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Error transferring ownership:&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">error&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">message&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Main function to run the process
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="nx">main&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">await&lt;/span> &lt;span class="nx">transferOwnership&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">FILE_ID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">NEW_OWNER_EMAIL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Run the main function
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="instructions-for-use">Instructions for Use
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>Replace the placeholders (your-client-id, your-client-secret, your-refresh-token, your-file-id, &lt;a class="link" href="mailto:new-owner-email@example.com" >new-owner-email@example.com&lt;/a>) with your actual data.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Follow the tutorial to set up your Google OAuth 2.0 credentials and obtain the refresh token.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Use this code in your Node.js project to transfer file ownership securely.&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

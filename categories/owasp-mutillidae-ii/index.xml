@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OWASP Mutillidae II on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/categories/owasp-mutillidae-ii/</link><description>Recent content in OWASP Mutillidae II on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 10 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/categories/owasp-mutillidae-ii/index.xml" rel="self" type="application/rss+xml"/><item><title>OWASP Mutillidae II - Command Injection</title><link>https://abriljordan.github.io/ajcasinillo/p/owasp-mutillidae-ii-command-injection/</link><pubDate>Sun, 10 Mar 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/owasp-mutillidae-ii-command-injection/</guid><description>&lt;h2 id="target-owasp-mutillidae-ii">Target: OWASP Mutillidae II
+&lt;/h2>&lt;p>What is OS command injection?&lt;/p>
+&lt;blockquote>
+&lt;p>&amp;quot; OS command injection is also known as shell injection. It allows an attacker to execute operating system (OS) commands on the server that is running an application, and typically fully compromise the application and its data. Often, an attacker can leverage an OS command injection vulnerability to compromise other parts of the hosting infrastructure, and exploit trust relationships to pivot the attack to other systems within the organization. &amp;quot;&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a class="link" href="https://portswigger.net/web-security/os-command-injection" target="_blank" rel="noopener"
+>https://portswigger.net/web-security/os-command-injection&lt;/a>&lt;/p>
+&lt;h2 id="ls-command">ls command
+&lt;/h2>&lt;p>ls is a Linux shell command that lists current directory contents of files and directories. By default, ‘ls’ lists files and directories in alphabetical order.&lt;/p>
+&lt;p>Type the &amp;lt;www.google.com&amp;gt; &amp;amp;&amp;amp; ls. This will search for DNS information for google and will execute the ls command indicating that the site is vunerable to command injection.&lt;/p>
+&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/ls-medium.jpeg"
+width="580"
+height="640"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/ls-medium_hu2730880035218893721.jpeg 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/ls-medium_hu17109749805697490929.jpeg 1024w"
+loading="lazy"
+alt="OS Command Injection"
+class="gallery-image"
+data-flex-grow="90"
+data-flex-basis="217px"
+>&lt;/p>
+&lt;p>The uname -a command will display all system information, including the kernel name, network node hostname, kernel release date, kernel version, machine hardware name, processor type, hardware platform, and operating system.&lt;/p>
+&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/uname-a-large.jpeg"
+width="1280"
+height="653"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/uname-a-large_hu14136908974311729997.jpeg 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-command-injection/uname-a-large_hu12987787939622773706.jpeg 1024w"
+loading="lazy"
+alt="OS Command Injection"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="470px"
+>&lt;/p></description></item><item><title>OWASP Mutillidae II - Sensitive Information Disclosure</title><link>https://abriljordan.github.io/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/</link><pubDate>Sun, 10 Mar 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/</guid><description>&lt;p>What is sensitive information disclosure vulnerability? When a website inadvertently provides users with sensitive information, this is known as sensitive information disclosure. We&amp;rsquo;ll be demonstrating a hardcoded credentials vulnerability utilizing the Client-side Comments page.&lt;/p>
+&lt;h3 id="first-open-the-client-side-comments-page-by-navigating-to-the-following-location-in-the-menu-htmljavascript-comments">First, open the Client-side Comments page by navigating to the following location in the menu: HTML/Javascript comments
+&lt;/h3>&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/1.png"
+width="2254"
+height="1416"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/1_hu12333412420791373610.png 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/1_hu8098048304865159466.png 1024w"
+loading="lazy"
+alt="Sensitive Information Disclosure"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;h3 id="right-click-then-choose-view-page-source">Right click, then choose View Page Source
+&lt;/h3>&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/2.png"
+width="1758"
+height="634"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/2_hu2080660172106838825.png 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/2_hu2899509519003612289.png 1024w"
+loading="lazy"
+alt="Sensitive Information Disclosure"
+class="gallery-image"
+data-flex-grow="277"
+data-flex-basis="665px"
+>&lt;/p>
+&lt;h3 id="the-hard-coded-login-credentials-are-located-in-a-comment-at-the-bottom-of-the-source-code-containing-page">The hard-coded login credentials are located in a comment at the bottom of the source code-containing page
+&lt;/h3>&lt;p>&lt;img src="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/3.png"
+width="2076"
+height="1288"
+srcset="https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/3_hu10686976551204682658.png 480w, https://abriljordan.github.io/ajcasinillo/ajcasinillo/p/owasp-mutillidae-ii-sensitive-information-disclosure/3_hu10872435664388523321.png 1024w"
+loading="lazy"
+alt="Sensitive Information Disclosure"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="386px"
+>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Capybara on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/capybara/</link><description>Recent content in Capybara on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 04 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/capybara/index.xml" rel="self" type="application/rss+xml"/><item><title>Capybara test script for the Sauce Demo</title><link>https://abriljordan.github.io/ajcasinillo/p/capybara-test-script-for-the-sauce-demo/</link><pubDate>Fri, 04 Oct 2024 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/capybara-test-script-for-the-sauce-demo/</guid><description>&lt;p>Here’s a basic example of a Capybara test for logging into Sauce Demo. This assumes you’re using RSpec for your testing framework.&lt;/p>
+&lt;p>First, make sure you have Capybara and Selenium installed. You can add them to your Gemfile if you’re using Bundler:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">gem &lt;span class="s1">&amp;#39;capybara&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gem &lt;span class="s1">&amp;#39;selenium-webdriver&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Then run:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">bundle install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Now, here’s a simple test to automate the login process using Capybara and RSpec:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec/saucedemo_login_spec.rb&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">require &lt;span class="s1">&amp;#39;capybara/rspec&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">require &lt;span class="s1">&amp;#39;selenium-webdriver&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Set up Capybara to use Selenium with Chrome&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Capybara.default_driver &lt;span class="o">=&lt;/span> :selenium_chrome
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RSpec.describe &lt;span class="s1">&amp;#39;Sauce Demo Login&amp;#39;&lt;/span>, type: :feature &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> before &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Set up the base URL for the tests&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Capybara.app_host &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;https://www.saucedemo.com/&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> end
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> it &lt;span class="s1">&amp;#39;logs into Sauce Demo successfully&amp;#39;&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Visit the Sauce Demo login page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> visit&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Fill in the login form&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fill_in &lt;span class="s1">&amp;#39;user-name&amp;#39;&lt;/span>, with: &lt;span class="s1">&amp;#39;standard_user&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> fill_in &lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>, with: &lt;span class="s1">&amp;#39;secret_sauce&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Click the login button&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> click_button &lt;span class="s1">&amp;#39;Login&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Expectation: Verify the user is redirected to the inventory page&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> expect&lt;span class="o">(&lt;/span>page&lt;span class="o">)&lt;/span>.to have_content&lt;span class="o">(&lt;/span>&lt;span class="s1">&amp;#39;Products&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> end
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">end
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Explanation:&lt;/p>
+&lt;pre>&lt;code>1. Capybara Setup: We’re using selenium_chrome as the driver to run the tests in the Chrome browser.
+2. RSpec Test: The test navigates to the login page, fills in the username and password fields (standard_user and secret_sauce), clicks the login button, and then verifies that the user has been redirected to the “Products” page, indicating a successful login.
+3. Capybara Matchers: expect(page).to have_content('Products') ensures that after login, the page contains the word “Products,” confirming we’re on the inventory page.
+&lt;/code>&lt;/pre>
+&lt;p>Running the Test:&lt;/p>
+&lt;p>To run this test, you can execute:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">rspec spec/saucedemo_login_spec.rb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This test will open a browser window, interact with the page, and check the login functionality of the Sauce Demo website.&lt;/p></description></item></channel></rss>

